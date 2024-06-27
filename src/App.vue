@@ -1,20 +1,37 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import { onMounted, ref } from "vue";
+import { supabase } from "./clients/supabase";
+import ProfileView from "./views/ProfileView.vue";
+import NavbarSection from "./components/header/Nav.vue";
+import FooterSection from "./components/footer/footer.vue";
+
+const session = ref();
+
+onMounted(() => {
+  supabase.auth.getSession().then(({ data }) => {
+    session.value = data.session;
+  });
+
+  supabase.auth.onAuthStateChange((_, _session) => {
+    session.value = _session;
+  });
+});
 </script>
 
 <template>
   <header>
-    <div class="wrapper">
-      <h1>HELLO STARTING PROJECT!</h1>
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
+    <nav>
+      <NavbarSection />
+    </nav>
   </header>
 
-  <RouterView />
-</template>
+  <section>
+    <div class="container" style="padding: 50px 0 100px 0">
+      <RouterView />
+    </div>
+  </section>
 
-<style scoped></style>
+  <footer>
+    <FooterSection />
+  </footer>
+</template>
