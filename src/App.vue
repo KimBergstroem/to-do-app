@@ -1,19 +1,29 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { supabase } from "./supabase/supabase";
+import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
+import { useUserStore } from "./stores/userStore";
 import NavbarSection from "./components/Nav.vue";
 import FooterSection from "./components/footer.vue";
 
-const session = ref();
+const router = useRouter();
+const userStore = useUserStore();
+const { user } = storeToRefs(userStore);
 
-onMounted(() => {
-  supabase.auth.getSession().then(({ data }) => {
-    session.value = data.session;
-  });
-
-  supabase.auth.onAuthStateChange((_, _session) => {
-    session.value = _session;
-  });
+onMounted(async () => {
+  const appReady = ref(null);
+  try {
+    await userStore.fetchUser();
+    if (!user.value) {
+      appReady.value = true;
+      router.push({ path: "/auth/SignIn" });
+    } else {
+      router.push({ path: "/" });
+    }
+  } catch (e) {
+    console.log(e);
+  }
 });
 </script>
 

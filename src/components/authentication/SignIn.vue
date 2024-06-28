@@ -94,6 +94,7 @@ const signIn = async () => {
       await useUserStore().signIn(email.value, password.value);
       redirect.push({ path: "/" });
       console.log("Logged in successfully");
+      alert("Logged in successfully");
     } catch (error) {
       errorMsg.value = error.message;
       console.log(error);

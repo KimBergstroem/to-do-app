@@ -123,7 +123,7 @@ const signUp = async () => {
     try {
       await useUserStore().signUp(email.value, password.value);
       alert("An confirmation email has been sent to you!");
-      redirect.push({ path: "/auth/login" });
+      redirect.push({ path: "/auth/signIn" });
     } catch (error) {
       errorMsg.value = error.message;
       setTimeout(() => {
