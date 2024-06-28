@@ -453,10 +453,10 @@ All testing was carried out in [Testing.md](TESTING.md).
 
 ### Solved Bugs
 
-| Type      | Bug     | Solution |
-| --------- | ------- | -------- |
-| Script.js | Example | Example  |
-| Script.js | Example | Example  |
+| Type      | Bug                                         | Solution                                                                                                                                    |
+| --------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Supabase  | Was not able to sign in with my application | Update the signIn function to signInWithPassword in my userStore. Becouse i used a newer version of supabase that do not use that function. |
+| Script.js | Example                                     | Example                                                                                                                                     |
 
 &nbsp;
 
