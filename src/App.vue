@@ -1,7 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue";
-import { supabase } from "./clients/supabase";
-import ProfileView from "./views/ProfileView.vue";
+import { supabase } from "./supabase/supabase";
 import NavbarSection from "./components/header/Nav.vue";
 import FooterSection from "./components/footer/footer.vue";
 
@@ -20,16 +19,14 @@ onMounted(() => {
 
 <template>
   <header>
-    <nav>
-      <NavbarSection />
-    </nav>
+    <NavbarSection />
   </header>
 
-  <section>
+  <main>
     <div class="container" style="padding: 50px 0 100px 0">
       <RouterView />
     </div>
-  </section>
+  </main>
 
   <footer>
     <FooterSection />
