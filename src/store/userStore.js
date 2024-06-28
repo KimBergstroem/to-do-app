@@ -43,6 +43,12 @@ export const useUserStore = defineStore("user", {
           ]);
         }
       },
+
+      async updateProfile(updates) {
+        const { error } = await supabase.from("profiles").upsert(updates);
+        if (error) throw error;
+        this.profile = { ...this.profile, ...updates };
+      },
   
       async signIn(email, password) {
         const { user, error } = await supabase.auth.signIn({
