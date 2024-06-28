@@ -33,6 +33,9 @@ body,
   overflow-x: hidden;
 }
 
+.bg-darken {
+  background-color: #252525;
+}
 a {
   text-decoration: none;
   color: var(--custom-color);
@@ -49,4 +52,69 @@ a {
 .btn-clr-primary:active {
   background-color: var(--custom-color-brand-secondary);
   color: var(--custom-bg-color);
+}
+
+/* -------------------------------- Forms --> */
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+.card-columns .card {
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 576px) {
+  .card-columns {
+    column-count: 3;
+    column-gap: 1.25rem;
+  }
+  .card-columns .card {
+    display: inline-block;
+    width: 100%;
+  }
+}
+.text-muted {
+  color: #9faecb !important;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  width: 100%;
 }
