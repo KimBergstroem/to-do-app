@@ -2,13 +2,13 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <div class="card-group mb-0">
-          <div class="card p-4 bg-darken">
-            <div class="card-body text-white">
-              <h1>Login</h1>
-              <p class="text-muted">Sign In to your account</p>
-              <form @submit.prevent="signIn" class="form-sign-in">
-                <div class="input-group mb-3">
+        <form @submit.prevent="signIn" class="form-sign-in">
+          <div class="card-group mb-0">
+            <div class="card p-4 bg-darken">
+              <div class="card-body text-white">
+                <h1>Login</h1>
+                <p class="text-muted">Sign In to your account</p>
+                <div class="input-group mb-3 form">
                   <span class="input-group-addon"
                     ><i class="fa fa-user"></i
                   ></span>
@@ -46,29 +46,29 @@
                     </button>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
-          </div>
-          <div class="card text-white btn-clr-primary py-5 d-md-down-none">
-            <div class="card-body text-center">
-              <div>
-                <h2>Sign up</h2>
-                <p>
-                  What are you waiting for, sign up today and start create ne
-                  reminders tasks for easily manage your daily life.
-                </p>
+            <div class="card text-white btn-clr-primary py-5 d-md-down-none">
+              <div class="card-body text-center">
+                <div>
+                  <h2>Sign up</h2>
+                  <p>
+                    What are you waiting for, sign up today and start create ne
+                    reminders tasks for easily manage your daily life.
+                  </p>
 
-                <p>Don't have an account?</p>
-                <p>
-                  <PersonalRouter
-                    :route="route"
-                    :buttonText="buttonText"
-                    class="sign-up-link" />
-                </p>
+                  <p>Don't have an account?</p>
+                  <p>
+                    <PersonalRouter
+                      :route="route"
+                      :buttonText="buttonText"
+                      class="sign-up-link" />
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
     <div v-show="errorMsg">{{ errorMsg }}</div>
@@ -96,6 +96,7 @@ const signIn = async () => {
       console.log("Logged in successfully");
     } catch (error) {
       errorMsg.value = error.message;
+      console.log(error);
       setTimeout(() => {
         errorMsg.value = "";
       }, 5000);
