@@ -51,7 +51,7 @@ export const useUserStore = defineStore("user", {
     },
 
     async signIn(email, password) {
-      const { user, error } = await supabase.auth.signInWithPassword({
+      const { user, error } = await supabase.auth.signIn({
         email: email,
         password: password,
       });
@@ -86,5 +86,8 @@ export const useUserStore = defineStore("user", {
         storage: localStorage,
       },
     ],
+  },
+  getters: {
+    isLoggedIn: (state) => !!state.user,
   },
 });

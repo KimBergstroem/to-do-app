@@ -40,11 +40,11 @@
       </ul>
       <div>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li v-if="isLoggedIn" class="log-out-welcome">
-            <p>Welcome, {{ username }}</p>
+          <li v-if="isLoggedIn">
+            <p class="nav-link">Welcome, {{ username }}</p>
           </li>
           <li v-if="isLoggedIn">
-            <button @click="signOut" class="nav-link btn">Sign Out</button>
+            <button @click="signOut" class="nav-link btn">SIGN OUT</button>
           </li>
           <li v-else>
             <router-link to="/auth/signIn" class="nav-link btn">
@@ -58,7 +58,36 @@
   <div v-show="errorMsg">{{ errorMsg }}</div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useUserStore } from "../stores/userStore";
+import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+
+const userStore = useUserStore();
+const router = useRouter();
+
+const errorMsg = ref("");
+
+const isLoggedIn = computed(() => userStore.isLoggedIn);
+
+const username = computed(() =>
+  userStore.profile ? userStore.profile.username : null
+);
+
+const signOut = async () => {
+  try {
+    await userStore.signOut();
+    router.push({ path: "/" });
+    console.log("Signed out successfully");
+    alert("Signed out successfully");
+  } catch (error) {
+    errorMsg.value = error.message;
+    setTimeout(() => {
+      errorMsg.value = "";
+    }, 5000);
+  }
+};
+</script>
 
 <style scoped>
 .custom-nav-link {
