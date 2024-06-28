@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { supabase } from "./supabase/supabase";
-import NavbarSection from "./components/header/Nav.vue";
-import FooterSection from "./components/footer/footer.vue";
+import NavbarSection from "./components/Nav.vue";
+import FooterSection from "./components/footer.vue";
 
 const session = ref();
 
