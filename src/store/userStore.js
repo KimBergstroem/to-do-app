@@ -24,6 +24,53 @@ export const useUserStore = defineStore("user", {
         console.log("profile in store: ", this.profile);
       }
     },
+
+    async signUp(email, password) {
+        const { user, error } = await supabase.auth.signUp({
+          email: email,
+          password: password,
+        });
+        if (error) throw error;
+        if (user) {
+          this.user = user;
+          console.log(this.user);
+  
+          const { data: profile } = await supabase.from("profiles").insert([
+            {
+              id: this.user.id,
+              username: email,
+            },
+          ]);
+        }
+      },
+  
+      async signIn(email, password) {
+        const { user, error } = await supabase.auth.signIn({
+          email: email,
+          password: password,
+        });
+        if (error) throw error;
+        if (user) {
+          this.user = user;
+          const { data: profile } = await supabase
+            .from("profiles")
+            .select()
+            .eq("id", this.user.id)
+            .single();
+  
+          if (profile) this.profile = profile;
+          console.log("profile in store: ", profile);
+        }
+      },
+  
+      async signOut() {
+        const { error } = await supabase.auth.signOut();
+        if (error) throw error;
+  
+        this.user = null;
+        this.profile = null;
+      },
+    },
   },
 
   persist: {
