@@ -4,28 +4,32 @@
     <button
       class="navbar-toggler"
       type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation">
+      @click="isCollapsed = !isCollapsed"
+      :aria-expanded="!isCollapsed"
+      aria-controls="navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div
+      :class="['collapse', 'navbar-collapse', { show: !isCollapsed }]"
+      id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <router-link
             class="nav-link custom-nav-link"
             to="/"
-            exact-active-class="router-link-exact-active"
+            exact
+            active-class="router-link-exact-active"
+            @click="isCollapsed = true"
             >Home</router-link
           >
         </li>
         <li class="nav-item">
           <router-link
             class="nav-link custom-nav-link"
-            to="/profile"
-            exact-active-class="router-link-exact-active"
+            to="/tasks"
+            exact
+            active-class="router-link-exact-active"
+            @click="isCollapsed = true"
             >Tasks</router-link
           >
         </li>
@@ -33,7 +37,9 @@
           <router-link
             class="nav-link custom-nav-link"
             to="/profile"
-            exact-active-class="router-link-exact-active"
+            exact
+            active-class="router-link-exact-active"
+            @click="isCollapsed = true"
             >Profile</router-link
           >
         </li>
@@ -47,7 +53,10 @@
             <button @click="signOut" class="nav-link btn">SIGN OUT</button>
           </li>
           <li v-else>
-            <router-link to="/auth/signIn" class="nav-link btn">
+            <router-link
+              to="/auth/signIn"
+              class="nav-link btn"
+              @click="isCollapsed = true">
               Sign In / Sign Up
             </router-link>
           </li>
@@ -67,6 +76,8 @@ const userStore = useUserStore();
 const router = useRouter();
 
 const errorMsg = ref("");
+
+let isCollapsed = ref(true);
 
 const isLoggedIn = computed(() => userStore.isLoggedIn);
 

@@ -56,7 +56,7 @@ watch(path, () => {
 </script>
 
 <template>
-  <div class="d-flex flex-column align-items-center">
+  <div>
     <img
       v-if="src"
       :src="src"
@@ -70,8 +70,10 @@ watch(path, () => {
       class="avatar image"
       :style="{ height: size + 'em', width: size + 'em' }" />
 
-    <div class="text-center mt-3 mb-3" :style="{ width: size + 'em' }">
-      <label class="button primary text-white btn btn-clr-primary" for="single">
+    <div :style="{ width: size + 'em' }">
+      <label
+        class="button primary text-white block btn btn-clr-primary mt-3 mb-3"
+        for="single">
         {{ uploading ? "Uploading ..." : "Upload" }}
       </label>
       <input
@@ -84,10 +86,3 @@ watch(path, () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.avatar {
-  border-radius: 50%;
-  object-fit: cover;
-}
-</style>

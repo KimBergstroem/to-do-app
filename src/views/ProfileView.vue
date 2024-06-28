@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <div v-if="isLoggedIn">
-      <div class="row">
-        <div class="col-lg-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div v-if="isLoggedIn">
           <div class="text-center card-box">
             <div class="member-card pt-2 pb-2">
               <div class="thumb-lg member-thumb mx-auto">
@@ -11,60 +11,21 @@
                   @upload="updateProfile"
                   size="10" />
               </div>
-              <div class="">
+              <div>
                 <h4>{{ username }}</h4>
                 <p class="text-muted">
                   {{ work_title }} <span>| </span
-                  ><span
-                    ><a href="#" class="text-pink">{{ website }}</a></span
-                  >
+                  ><a href="#" class="text-pink">{{ website }}</a>
                 </p>
               </div>
-              <ul class="social-links list-inline">
-                <li class="list-inline-item">
-                  <a
-                    title=""
-                    data-placement="top"
-                    data-toggle="tooltip"
-                    class="tooltips"
-                    href=""
-                    data-original-title="Facebook"
-                    ><i class="fa fa-facebook"></i
-                  ></a>
-                </li>
-                <li class="list-inline-item">
-                  <a
-                    title=""
-                    data-placement="top"
-                    data-toggle="tooltip"
-                    class="tooltips"
-                    href=""
-                    data-original-title="Twitter"
-                    ><i class="fa fa-twitter"></i
-                  ></a>
-                </li>
-                <li class="list-inline-item">
-                  <a
-                    title=""
-                    data-placement="top"
-                    data-toggle="tooltip"
-                    class="tooltips"
-                    href=""
-                    data-original-title="Skype"
-                    ><i class="fa fa-skype"></i
-                  ></a>
-                </li>
-              </ul>
-              <button
-                type="button"
-                class="btn text-white btn-clr-primary mt-3 btn-rounded waves-effect w-md waves-light">
-                Create Task
-              </button>
-              <button
-                type="button"
-                class="btn text-white btn-clr-primary mt-3 btn-rounded waves-effect w-md waves-light">
-                Edit profile
-              </button>
+              <div class="mt-3">
+                <button type="button" class="btn btn-clr-primary m-1">
+                  Create Task
+                </button>
+                <button type="button" class="btn btn-clr-primary m-1">
+                  Edit Profile
+                </button>
+              </div>
               <div class="mt-4">
                 <div class="row">
                   <div class="col-4">
@@ -90,12 +51,12 @@
             </div>
           </div>
         </div>
+        <div v-else>
+          <h2 class="text-center">Please log in to view your profile.</h2>
+        </div>
+        <div v-show="errorMsg" class="text-center mt-3">{{ errorMsg }}</div>
       </div>
     </div>
-    <div v-else>
-      <h2>Please log in, in order to see your profile</h2>
-    </div>
-    <div v-show="errorMsg">{{ errorMsg }}</div>
   </div>
 </template>
 
@@ -144,11 +105,11 @@ async function updateProfile() {
       updated_at: new Date(),
     };
 
-    console.log("Update Payload:", updates); // Log the payload
+    console.log("Update Payload:", updates);
 
     await userStore.updateProfile(updates);
 
-    console.log("Profile updated successfully"); // Log the response
+    console.log("Profile updated successfully");
   } catch (error) {
     console.error("Error updating profile:", error.message);
   } finally {
@@ -157,8 +118,19 @@ async function updateProfile() {
 }
 </script>
 
-<style>
+<style scoped>
 h2 {
   text-align: center;
+  margin-top: 50px;
+}
+
+.member-thumb {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .member-card {
+    padding: 20px;
+  }
 }
 </style>

@@ -63,6 +63,9 @@
                 </div>
                 <div class="row">
                   <div class="col-6">
+                    <div class="mb-3 text-danger" v-show="errorMsg">
+                      {{ errorMsg }}
+                    </div>
                     <button
                       class="button btn text-white btn-clr-primary mb-2"
                       type="submit">
@@ -95,7 +98,6 @@
         </div>
       </div>
     </div>
-    <div v-show="errorMsg">{{ errorMsg }}</div>
   </div>
 </template>
 
