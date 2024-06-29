@@ -82,15 +82,15 @@
               <div>
                 <h2>Sign In</h2>
                 <p>
-                  If you have any problem with the log in or don't remember your
-                  credentials contact support.
+                  If you encounter any issues logging in or have forgotten your
+                  credentials, please contact support.
                 </p>
                 <p>Already own an account?</p>
                 <p>
                   <PersonalRouter
                     :route="route"
                     :buttonText="buttonText"
-                    class="sign-up-link" />
+                    class="sign-up-link fw-bold" />
                 </p>
               </div>
             </div>

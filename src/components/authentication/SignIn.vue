@@ -56,8 +56,8 @@
                 <div>
                   <h2>Sign up</h2>
                   <p>
-                    What are you waiting for, sign up today and start create ne
-                    reminders tasks for easily manage your daily life.
+                    What are you waiting for? Sign up today to create new
+                    reminders and tasks, and easily manage your daily life.
                   </p>
 
                   <p>Don't have an account?</p>
@@ -65,7 +65,7 @@
                     <PersonalRouter
                       :route="route"
                       :buttonText="buttonText"
-                      class="sign-up-link" />
+                      class="sign-up-link fw-bold" />
                   </p>
                 </div>
               </div>

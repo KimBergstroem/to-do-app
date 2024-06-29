@@ -41,4 +41,10 @@ onMounted(async () => {
   <footer>
     <FooterSection />
   </footer>
+
+  <router-link to="/create-task" class="create-task-button">
+    <div class="circle btn-clr-primary">
+      <span class="plus-sign">+</span>
+    </div>
+  </router-link>
 </template>

@@ -1,6 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-sm navbar-dark bg-transparent m-4">
-    <router-link class="navbar-brand" to="/">Reminder To Do</router-link>
+    <router-link class="navbar-brand" to="/"
+      ><span class="logo-text">Reminder To Do</span></router-link
+    >
     <button
       class="navbar-toggler"
       type="button"
@@ -12,7 +14,7 @@
     <div
       :class="['collapse', 'navbar-collapse', { show: !isCollapsed }]"
       id="navbarNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mt-2 mb-2 mb-lg-0">
         <li class="nav-item">
           <router-link
             class="nav-link custom-nav-link"
@@ -45,12 +47,14 @@
         </li>
       </ul>
       <div>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav mx-auto text-center mb-2 mb-lg-0">
           <li v-if="isLoggedIn">
             <p class="nav-link">Welcome, {{ username }}</p>
           </li>
           <li v-if="isLoggedIn">
-            <button @click="signOut" class="nav-link btn">SIGN OUT</button>
+            <button @click="signOut" class="nav-link mx-auto text-center">
+              SIGN OUT
+            </button>
           </li>
           <li v-else>
             <router-link

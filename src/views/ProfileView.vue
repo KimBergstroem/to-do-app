@@ -1,62 +1,47 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 col-md-10">
-        <div v-if="isLoggedIn">
-          <div class="text-center card-box">
-            <div class="member-card pt-2 pb-2">
-              <div class="thumb-lg member-thumb mx-auto">
-                <Avatar
-                  v-model:path="avatar_url"
-                  @upload="updateProfile"
-                  size="10" />
-              </div>
-              <div>
-                <h4>{{ username }}</h4>
-                <p class="text-muted">
-                  {{ work_title }} <span>| </span
-                  ><a href="#" class="text-pink">{{ website }}</a>
-                </p>
-              </div>
-              <div class="mt-3">
-                <button type="button" class="btn btn-clr-primary m-1">
-                  Create Task
-                </button>
-                <button type="button" class="btn btn-clr-primary m-1">
-                  Edit Profile
-                </button>
-              </div>
-              <div class="mt-4">
-                <div class="row">
-                  <div class="col-4">
-                    <div class="mt-3">
-                      <h4>2563</h4>
-                      <p class="mb-0 text-muted">Pending</p>
-                    </div>
-                  </div>
-                  <div class="col-4">
-                    <div class="mt-3">
-                      <h4>6952</h4>
-                      <p class="mb-0 text-muted">Done</p>
-                    </div>
-                  </div>
-                  <div class="col-4">
-                    <div class="mt-3">
-                      <h4>1125</h4>
-                      <p class="mb-0 text-muted">Total</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <div class="container d-flex justify-content-center">
+    <div v-if="isLoggedIn" class="card-profile p-3">
+      <div class="d-flex flex-column flex-md-row align-items-md-center">
+        <div class="image">
+          <Avatar v-model:path="avatar_url" @upload="updateProfile" size="10" />
+        </div>
+
+        <div class="ml-md-3 mt-3 mt-md-0 flex-grow-1">
+          <h4 class="mb-0 mt-0">{{ username }}</h4>
+          <span>{{ work_title }}</span>
+
+          <div class="p-2 mt-2 bg-primary rounded text-white stats">
+            <div class="d-flex flex-column">
+              <span class="articles">Pending Task</span>
+              <span class="number1">38</span>
+            </div>
+
+            <div class="d-flex flex-column">
+              <span class="followers">Solved Task</span>
+              <span class="number2">980</span>
+            </div>
+
+            <div class="d-flex flex-column">
+              <span class="rating">Total Task</span>
+              <span class="number3">8.9</span>
             </div>
           </div>
+
+          <div class="mt-2 d-flex flex-column flex-md-row gap-2">
+            <button class="btn text-white btn-clr-primary w-100 mb-1 mb-md-0">
+              Create Task
+            </button>
+            <button class="btn text-white btn-clr-primary w-100 ml-md-2">
+              Edit Profile
+            </button>
+          </div>
         </div>
-        <div v-else>
-          <h2 class="text-center">Please log in to view your profile.</h2>
-        </div>
-        <div v-show="errorMsg" class="text-center mt-3">{{ errorMsg }}</div>
       </div>
     </div>
+    <div v-else>
+      <h2 class="text-center">Please log in to view your profile.</h2>
+    </div>
+    <div v-show="errorMsg" class="text-center mt-3">{{ errorMsg }}</div>
   </div>
 </template>
 
@@ -118,19 +103,4 @@ async function updateProfile() {
 }
 </script>
 
-<style scoped>
-h2 {
-  text-align: center;
-  margin-top: 50px;
-}
-
-.member-thumb {
-  margin-bottom: 20px;
-}
-
-@media (max-width: 768px) {
-  .member-card {
-    padding: 20px;
-  }
-}
-</style>
+<style scoped></style>

@@ -61,16 +61,16 @@ watch(path, () => {
       v-if="src"
       :src="src"
       alt="Avatar"
-      class="avatar image"
+      class="avatar image rounded"
       :style="{ height: size + 'em', width: size + 'em' }" />
     <img
       v-else
       :src="defaultAvatarUrl"
       alt="Default Avatar"
-      class="avatar image"
+      class="avatar image rounded"
       :style="{ height: size + 'em', width: size + 'em' }" />
 
-    <div class="text-center mt-3 mb-3" :style="{ width: size + 'em' }">
+    <!--     <div class="text-center mt-3 mb-3" :style="{ width: size + 'em' }">
       <label class="button primary text-white btn btn-clr-primary" for="single">
         {{ uploading ? "Uploading ..." : "Upload" }}
       </label>
@@ -81,13 +81,13 @@ watch(path, () => {
         accept="image/*"
         @change="uploadAvatar"
         :disabled="uploading" />
-    </div>
+    </div> -->
   </div>
 </template>
 
 <style scoped>
 .avatar {
-  border-radius: 50%;
+  border-radius: inherit;
   object-fit: cover;
 }
 </style>
