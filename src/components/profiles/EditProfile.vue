@@ -1,68 +1,73 @@
 <template>
-  <div class="container">
-    <h1>Edit Profile</h1>
+  <div class="container d-flex justify-content-center">
+    <div v-if="isLoggedIn" class="card-profile p-3">
+      <div class="d-flex flex-column flex-md-row align-items-md-center">
+        <div class="image text-center">
+          <Avatar
+            v-model:path="form.avatar_url"
+            size="10"
+            :showUploadButton="true" />
+          {{ full_name }}
+        </div>
 
-    <div v-if="isLoggedIn" class="form-group text-center">
-      <label for="avatar">Profile Picture</label>
-      <Avatar
-        v-model:path="form.avatar_url"
-        @upload="uploadAvatar"
-        size="10"
-        :showUploadButton="true" />
+        <div class="ml-md-3 mt-3 mt-md-0 flex-grow-1">
+          <h4 class="mb-0 mt-0">{{ username }}</h4>
+          <span>{{ work_title }}</span>
+
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              id="username"
+              type="text"
+              v-model="form.username"
+              class="form-control"
+              placeholder="Enter your username"
+              required />
+          </div>
+          <div class="form-group">
+            <label for="full_name">Full Name</label>
+            <input
+              id="full_name"
+              type="text"
+              v-model="form.full_name"
+              class="form-control"
+              placeholder="Enter your full name"
+              required />
+          </div>
+          <div class="form-group">
+            <label for="work_title">Work Title</label>
+            <input
+              id="work_title"
+              type="text"
+              v-model="form.work_title"
+              class="form-control"
+              placeholder="Enter your work title" />
+          </div>
+
+          <div class="form-group">
+            <label for="website">Website</label>
+            <input
+              id="website"
+              type="url"
+              v-model="form.website"
+              class="form-control"
+              placeholder="Enter your website URL" />
+          </div>
+
+          <button
+            type="submit"
+            class="btn text-white btn-clr-primary"
+            :disabled="loading">
+            {{ loading ? "Updating..." : "Update" }}
+          </button>
+          <button @click="cancelEdit" class="btn btn-danger m-3">Cancel</button>
+        </div>
+      </div>
     </div>
-
-    <form v-if="isLoggedIn" @submit.prevent="updateProfile">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          v-model="form.username"
-          class="form-control"
-          placeholder="Enter your username"
-          required />
-      </div>
-      <div class="form-group">
-        <label for="full_name">Full Name</label>
-        <input
-          id="full_name"
-          type="text"
-          v-model="form.full_name"
-          class="form-control"
-          placeholder="Enter your full name"
-          required />
-      </div>
-      <div class="form-group">
-        <label for="work_title">Work Title</label>
-        <input
-          id="work_title"
-          type="text"
-          v-model="form.work_title"
-          class="form-control"
-          placeholder="Enter your work title" />
-      </div>
-
-      <div class="form-group">
-        <label for="website">Website</label>
-        <input
-          id="website"
-          type="url"
-          v-model="form.website"
-          class="form-control"
-          placeholder="Enter your website URL" />
-      </div>
-
-      <button
-        type="submit"
-        class="btn text-white btn-clr-primary"
-        :disabled="loading">
-        {{ loading ? "Updating..." : "Update" }}
-      </button>
-      <button @click="cancelEdit" class="btn btn-danger">Cancel</button>
-    </form>
-    <div class="mb-3 text-danger" v-show="errorMsg">
-      {{ errorMsg }}
+    <div v-else>
+      <h2 class="text-center">Please log in to view your profile.</h2>
     </div>
+    <div v-show="errorMsg" class="text-center mt-3">{{ errorMsg }}</div>
   </div>
 </template>
 
@@ -70,11 +75,11 @@
 import { ref, onMounted, computed } from "vue";
 import { useUserStore } from "../../stores/userStore";
 import { useRouter } from "vue-router";
-import Avatar from "../profiles/ProfileAvatar.vue";
-
-const router = useRouter();
+import Avatar from "../../components/profiles/ProfileAvatar.vue";
 
 const userStore = useUserStore();
+const router = useRouter();
+
 const isLoggedIn = computed(() => userStore.isLoggedIn);
 
 const form = ref({
@@ -106,10 +111,7 @@ async function getProfile() {
     form.value.work_title = userStore.profile.work_title;
     form.value.avatar_url = userStore.profile.avatar_url;
   } catch (error) {
-    errorMsg.value = error.message;
-    setTimeout(() => {
-      errorMsg.value = "";
-    }, 5000);
+    console.error("Error fetching profile:", error.message);
   } finally {
     loading.value = false;
   }
@@ -148,5 +150,15 @@ function cancelEdit() {
 <style scoped>
 .form-group {
   margin-bottom: 1rem;
+}
+
+.image {
+  flex: 0 0 auto;
+}
+
+@media (min-width: 768px) {
+  .image {
+    margin-right: 1rem;
+  }
 }
 </style>
