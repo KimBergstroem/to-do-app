@@ -2,14 +2,17 @@
   <div class="container d-flex justify-content-center">
     <div v-if="isLoggedIn" class="card-profile p-3">
       <div class="d-flex flex-column flex-md-row align-items-md-center">
-        <div class="image">
-          <Avatar v-model:path="avatar_url" @upload="updateProfile" size="10" />
+        <div class="image text-center">
+          <Avatar
+            v-model:path="avatar_url"
+            size="10"
+            :showUploadButton="false" />
+          {{ full_name }}
         </div>
 
         <div class="ml-md-3 mt-3 mt-md-0 flex-grow-1">
           <h4 class="mb-0 mt-0">{{ username }}</h4>
           <span>{{ work_title }}</span>
-
           <div class="p-2 mt-2 bg-primary rounded text-white stats">
             <div class="d-flex flex-column">
               <span class="articles">Pending Task</span>
@@ -31,9 +34,11 @@
             <button class="btn text-white btn-clr-primary w-100 mb-1 mb-md-0">
               Create Task
             </button>
-            <button class="btn text-white btn-clr-primary w-100 ml-md-2">
+            <router-link
+              to="/profile/edit"
+              class="btn text-white btn-clr-primary w-100 ml-md-2">
               Edit Profile
-            </button>
+            </router-link>
           </div>
         </div>
       </div>
@@ -55,6 +60,7 @@ const isLoggedIn = computed(() => userStore.isLoggedIn);
 
 const loading = ref(false);
 const username = ref(null);
+const full_name = ref(null);
 const website = ref(null);
 const avatar_url = ref(null);
 const work_title = ref(null);
@@ -69,34 +75,11 @@ async function getProfile() {
     await userStore.fetchUser();
     username.value = userStore.profile.username;
     website.value = userStore.profile.website;
+    full_name.value = userStore.profile.full_name;
     work_title.value = userStore.profile.work_title;
     avatar_url.value = userStore.profile.avatar_url;
   } catch (error) {
     console.error("Error fetching profile:", error.message);
-  } finally {
-    loading.value = false;
-  }
-}
-
-async function updateProfile() {
-  try {
-    loading.value = true;
-    const updates = {
-      id: userStore.user.id,
-      username: username.value,
-      website: website.value,
-      avatar_url: avatar_url.value,
-      work_title: work_title.value,
-      updated_at: new Date(),
-    };
-
-    console.log("Update Payload:", updates);
-
-    await userStore.updateProfile(updates);
-
-    console.log("Profile updated successfully");
-  } catch (error) {
-    console.error("Error updating profile:", error.message);
   } finally {
     loading.value = false;
   }

@@ -4,6 +4,7 @@ import ProfileView from "../views/ProfileView.vue";
 import Auth from "../components/authentication/Auth.vue";
 import SignIn from "../components/authentication/SignIn.vue";
 import SignUp from "../components/authentication/SignUp.vue";
+import EditProfile from "../components/profiles/EditProfile.vue";
 
 const routes = [
   {
@@ -16,6 +17,7 @@ const routes = [
   },
   { path: "/", component: HomeView },
   { path: "/profile", component: ProfileView },
+  { path: "/profile/edit", component: EditProfile },
 ];
 
 const router = createRouter({

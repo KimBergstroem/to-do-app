@@ -40,9 +40,7 @@
               <div class="card">
                 <div class="card-body">
                   <h3 class="card-title">More Information</h3>
-                  <p class="card-text">
-                    Learn more about our features and capabilities.
-                  </p>
+                  <p class="card-text">Learn more about our capabilities.</p>
                   <button class="btn text-white btn-clr-primary btn-block">
                     Learn More
                   </button>

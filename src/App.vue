@@ -12,15 +12,8 @@ const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 
 onMounted(async () => {
-  const appReady = ref(null);
   try {
     await userStore.fetchUser();
-    if (!user.value) {
-      appReady.value = true;
-      router.push({ path: "/auth/SignIn" });
-    } else {
-      router.push({ path: "/" });
-    }
   } catch (e) {
     console.log(e);
   }
