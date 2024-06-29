@@ -4,7 +4,9 @@
 
 Reminder To Do is a straightforward CRUD (Create, Read, Update, Delete) application designed to facilitate task management through personalized to-do lists and reminders. Targeted at users seeking an efficient way to organize their tasks, the application allows seamless account creation and login functionalities. Once authenticated, users can create, update, and delete tasks, set reminders, and manage their schedules effectively. Powered by an integrated Supabase database, Reminder To Do ensures data security and scalability, providing a user-friendly interface for streamlined task management.
 
-![Reminder To Do WebbApp Responsiveness](img)
+<p align="center">
+  <img src="docs/readme.md/readme-header-img.png" />
+</p>
 
 Developer: [Kim Bergström](https://github.com/KimBergstroem) <br>
 [Live webpage](https://reminder-to-do-app.netlify.app/)<br>
