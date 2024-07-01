@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { supabase } from "..//supabase/supabase";
+import { supabase } from "../supabase/supabase";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
@@ -20,8 +20,6 @@ export const useUserStore = defineStore("user", {
         if (error) throw error;
 
         if (profile) this.profile = profile;
-        console.log("user in store: ", this.user);
-        console.log("profile in store: ", this.profile);
       }
     },
 
@@ -39,7 +37,6 @@ export const useUserStore = defineStore("user", {
       if (error) throw error;
       if (user) {
         this.user = user;
-        console.log(this.user);
 
         const { data: profile } = await supabase.from("profiles").insert([
           {
@@ -65,7 +62,6 @@ export const useUserStore = defineStore("user", {
           .single();
 
         if (profile) this.profile = profile;
-        console.log("profile in store: ", profile);
       }
     },
 
@@ -78,15 +74,6 @@ export const useUserStore = defineStore("user", {
     },
   },
 
-  persist: {
-    enabled: true,
-    strategies: [
-      {
-        key: "user",
-        storage: localStorage,
-      },
-    ],
-  },
   getters: {
     isLoggedIn: (state) => !!state.user,
   },
