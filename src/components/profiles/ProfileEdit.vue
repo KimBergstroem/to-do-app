@@ -7,61 +7,63 @@
             v-model:path="form.avatar_url"
             size="10"
             :showUploadButton="true" />
-          {{ full_name }}
         </div>
+        <form @submit.prevent="updateProfile" class="profile-form">
+          <div class="ml-md-3 mt-3 mt-md-0 flex-grow-1">
+            <h4 class="mb-0 mt-0">{{ username }}</h4>
+            <span>{{ work_title }}</span>
 
-        <div class="ml-md-3 mt-3 mt-md-0 flex-grow-1">
-          <h4 class="mb-0 mt-0">{{ username }}</h4>
-          <span>{{ work_title }}</span>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input
+                id="username"
+                type="text"
+                v-model="form.username"
+                class="form-control"
+                placeholder="Enter your username"
+                required />
+            </div>
+            <div class="form-group">
+              <label for="full_name">Full Name</label>
+              <input
+                id="full_name"
+                type="text"
+                v-model="form.full_name"
+                class="form-control"
+                placeholder="Enter your full name"
+                required />
+            </div>
+            <div class="form-group">
+              <label for="work_title">Work Title</label>
+              <input
+                id="work_title"
+                type="text"
+                v-model="form.work_title"
+                class="form-control"
+                placeholder="Enter your work title" />
+            </div>
 
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input
-              id="username"
-              type="text"
-              v-model="form.username"
-              class="form-control"
-              placeholder="Enter your username"
-              required />
-          </div>
-          <div class="form-group">
-            <label for="full_name">Full Name</label>
-            <input
-              id="full_name"
-              type="text"
-              v-model="form.full_name"
-              class="form-control"
-              placeholder="Enter your full name"
-              required />
-          </div>
-          <div class="form-group">
-            <label for="work_title">Work Title</label>
-            <input
-              id="work_title"
-              type="text"
-              v-model="form.work_title"
-              class="form-control"
-              placeholder="Enter your work title" />
-          </div>
+            <div class="form-group">
+              <label for="website">Website</label>
+              <input
+                id="website"
+                type="url"
+                v-model="form.website"
+                class="form-control"
+                placeholder="Enter your website URL" />
+            </div>
 
-          <div class="form-group">
-            <label for="website">Website</label>
-            <input
-              id="website"
-              type="url"
-              v-model="form.website"
-              class="form-control"
-              placeholder="Enter your website URL" />
+            <button
+              type="submit"
+              class="btn text-white btn-clr-primary"
+              :disabled="loading">
+              {{ loading ? "Updating..." : "Update" }}
+            </button>
+            <button @click="cancelEdit" class="btn btn-danger m-3">
+              Cancel
+            </button>
           </div>
-
-          <button
-            type="submit"
-            class="btn text-white btn-clr-primary"
-            :disabled="loading">
-            {{ loading ? "Updating..." : "Update" }}
-          </button>
-          <button @click="cancelEdit" class="btn btn-danger m-3">Cancel</button>
-        </div>
+        </form>
       </div>
     </div>
     <div v-else>
@@ -75,7 +77,7 @@
 import { ref, onMounted, computed } from "vue";
 import { useUserStore } from "../../stores/userStore";
 import { useRouter } from "vue-router";
-import Avatar from "../../components/profiles/ProfileAvatar.vue";
+import Avatar from "./ProfileAvatar.vue";
 
 const userStore = useUserStore();
 const router = useRouter();

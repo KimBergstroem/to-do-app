@@ -31,9 +31,11 @@
           </div>
 
           <div class="mt-2 d-flex flex-column flex-md-row gap-2">
-            <button class="btn text-white btn-clr-primary w-100 mb-1 mb-md-0">
+            <router-link
+              to="/create"
+              class="btn text-white btn-clr-primary w-100 ml-md-2">
               Create Task
-            </button>
+            </router-link>
             <router-link
               to="/profile/edit"
               class="btn text-white btn-clr-primary w-100 ml-md-2">
@@ -43,8 +45,13 @@
         </div>
       </div>
     </div>
-    <div v-else>
-      <h2 class="text-center">Please log in to view your profile.</h2>
+    <div v-else class="d-flex flex-column align-items-center">
+      <h1 class="text-2xl">
+        Please log in before you can access your profile.
+      </h1>
+      <router-link class="btn text-white btn-clr-primary mt-3" to="/auth/signIn"
+        >Sign In</router-link
+      >
     </div>
     <div v-show="errorMsg" class="text-center mt-3">{{ errorMsg }}</div>
   </div>
