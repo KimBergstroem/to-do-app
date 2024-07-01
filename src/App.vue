@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import { supabase } from "./supabase/supabase";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
@@ -18,26 +18,32 @@ onMounted(async () => {
     console.log(e);
   }
 });
+
+const isTaskCreate = computed(() => {
+  return router.currentRoute.value.name === "TaskCreate";
+});
 </script>
 
 <template>
-  <header>
-    <NavbarSection />
-  </header>
+  <div class="app-wrapper">
+    <header>
+      <NavbarSection />
+    </header>
 
-  <main>
-    <div class="container" style="padding: 50px 0 100px 0">
-      <RouterView />
-    </div>
-  </main>
+    <main>
+      <div class="container" style="padding: 50px 0 100px 0">
+        <RouterView />
+      </div>
+    </main>
 
-  <footer>
-    <FooterSection />
-  </footer>
+    <footer>
+      <FooterSection />
+    </footer>
 
-  <router-link to="/create-task" class="create-task-button">
-    <div class="circle btn-clr-primary">
-      <span class="plus-sign">+</span>
-    </div>
-  </router-link>
+    <router-link v-if="!isTaskCreate" to="/create" class="create-task-button">
+      <div class="circle btn-clr-primary">
+        <span class="plus-sign">+</span>
+      </div>
+    </router-link>
+  </div>
 </template>
