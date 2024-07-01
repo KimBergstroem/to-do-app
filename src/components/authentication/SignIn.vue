@@ -9,9 +9,9 @@
                 <h1>Login</h1>
                 <p class="text-muted">Sign In to your account</p>
                 <div class="input-group mb-3 form">
-                  <span class="input-group-addon"
-                    ><i class="fa fa-user"></i
-                  ></span>
+                  <span class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                  </span>
                   <input
                     type="email"
                     class="input-field form-control"
@@ -21,9 +21,9 @@
                     required />
                 </div>
                 <div class="input-group mb-4">
-                  <span class="input-group-addon"
-                    ><i class="fa fa-lock"></i
-                  ></span>
+                  <span class="input-group-addon">
+                    <i class="fa fa-lock"></i>
+                  </span>
                   <input
                     type="password"
                     class="input-field form-control"
@@ -59,7 +59,6 @@
                     What are you waiting for? Sign up today to create new
                     reminders and tasks, and easily manage your daily life.
                   </p>
-
                   <p>Don't have an account?</p>
                   <p>
                     <PersonalRouter
@@ -84,30 +83,25 @@ import { supabase } from "../../supabase/supabase";
 import { useUserStore } from "../../stores/userStore";
 import PersonalRouter from "./PersonalRouter.vue";
 
-const route = "/auth/signup";
-const buttonText = "Sign Up";
-
+const email = ref("");
+const password = ref("");
 const errorMsg = ref("");
 const redirect = useRouter();
 
+const route = "/auth/signup";
+const buttonText = "Sign Up";
+
 const signIn = async () => {
-  if (password.value) {
-    try {
-      await useUserStore().signIn(email.value, password.value);
-      redirect.push({ path: "/" });
-      console.log("Logged in successfully");
-      alert("Logged in successfully");
-    } catch (error) {
-      errorMsg.value = error.message;
-      console.log(error);
-      setTimeout(() => {
-        errorMsg.value = "";
-      }, 5000);
-    }
-    return;
+  try {
+    await useUserStore().signIn(email.value, password.value);
+    redirect.push({ path: "/" });
+    alert("Logged in successfully");
+  } catch (error) {
+    errorMsg.value = error.message;
+    console.log(error);
+    setTimeout(() => {
+      errorMsg.value = "";
+    }, 5000);
   }
-  errorMsg.value = "error";
 };
 </script>
-
-<style scoped></style>

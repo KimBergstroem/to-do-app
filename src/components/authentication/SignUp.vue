@@ -117,7 +117,6 @@ const password = ref("");
 const confirmPassword = ref("");
 
 const errorMsg = ref("");
-
 const redirect = useRouter();
 
 const signUp = async () => {
@@ -137,5 +136,3 @@ const signUp = async () => {
   errorMsg.value = "error";
 };
 </script>
-
-<style scoped></style>
