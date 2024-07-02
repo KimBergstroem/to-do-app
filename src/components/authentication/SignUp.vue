@@ -107,7 +107,6 @@ import { supabase } from "../../supabase/supabase";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../../stores/userStore";
 import PersonalRouter from "./PersonalRouter.vue";
-import { useToast } from "vue-toastification";
 
 const route = "/auth/signIn";
 const buttonText = "Sign In";
@@ -117,25 +116,23 @@ const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
 
-const redirect = useRouter();
 const errorMsg = ref("");
-const toastMsg = useToast();
+const redirect = useRouter();
 
 const signUp = async () => {
   if (password.value === confirmPassword.value) {
     try {
       await useUserStore().signUp(email.value, password.value);
-      toastMsg.success("An confirmation email has been sent to you!", {
-        toastClassName: "custom-toast-success",
-      });
+      alert("An confirmation email has been sent to you!");
       redirect.push({ path: "/auth/signIn" });
     } catch (error) {
-      toastMsg.error(error.message);
+      errorMsg.value = error.message;
+      setTimeout(() => {
+        errorMsg.value = "";
+      }, 5000);
     }
     return;
-  } else {
-    toastMsg.error("Password does not match");
   }
-  errorMsg.value = "";
+  errorMsg.value = "error";
 };
 </script>
