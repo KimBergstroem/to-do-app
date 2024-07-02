@@ -82,11 +82,13 @@ import { useRouter } from "vue-router";
 import { supabase } from "../../supabase/supabase";
 import { useUserStore } from "../../stores/userStore";
 import PersonalRouter from "./PersonalRouter.vue";
+import { useToast } from "vue-toastification";
 
 const email = ref("");
 const password = ref("");
 const errorMsg = ref("");
 const redirect = useRouter();
+const toastMsg = useToast();
 
 const route = "/auth/signup";
 const buttonText = "Sign Up";
@@ -95,13 +97,12 @@ const signIn = async () => {
   try {
     await useUserStore().signIn(email.value, password.value);
     redirect.push({ path: "/" });
-    alert("Logged in successfully");
+    toastMsg.success("Success: Signing In!", {
+      toastClassName: "custom-toast-success",
+    });
   } catch (error) {
+    toastMsg.error(error.message);
     errorMsg.value = error.message;
-    console.log(error);
-    setTimeout(() => {
-      errorMsg.value = "";
-    }, 5000);
   }
 };
 </script>

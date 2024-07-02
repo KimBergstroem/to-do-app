@@ -14,6 +14,12 @@
   --custom-spacing: 5px;
 }
 
+/* Overrides Toastifications Styles */
+.Vue-Toastification__toast--success.custom-toast-success {
+  background-color: #24b47e !important;
+  color: #ffffff !important;
+}
+
 /* Global Styles */
 html,
 body {
@@ -40,6 +46,10 @@ body {
   background-color: var(--custom-panel-color);
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 a {
   text-decoration: none;
   color: var(--custom-color);
@@ -49,6 +59,10 @@ a {
   background-color: var(--custom-color-brand);
   color: var(--custom-bg-color);
   border: none;
+}
+
+.custom-color-text-green {
+  color: var(--custom-color-brand-secondary);
 }
 
 .btn-clr-primary:hover,
@@ -62,24 +76,50 @@ a {
   text-decoration: underline;
 }
 
+/* Main / app wrapper */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
 /* Footer styling */
 footer {
   color: var(--custom-color);
-  text-align: center;
-  padding: 10px 0;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  z-index: 1000;
+  margin-top: auto;
 }
 
 /* Logo text styling */
 .logo-text {
-  background: linear-gradient(135deg, #24b47e, #1f9268, #19775e);
+  font-weight: bold;
+  background: linear-gradient(
+    135deg,
+    #24b47e,
+    #1f9268,
+    #19775e,
+    #24b47e,
+    #1f9268,
+    #19775e
+  );
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
-  font-weight: bold;
   -webkit-text-fill-color: transparent;
+  animation: moveGradient 3s infinite linear;
+}
+
+/* Keyframes for the gradient animation for logo */
+@keyframes moveGradient {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Container */
@@ -170,7 +210,7 @@ p {
   align-items: center;
 }
 .plus-sign {
-  font-size: 34px;
+  font-size: 20px;
   color: var(--custom-color);
 }
 

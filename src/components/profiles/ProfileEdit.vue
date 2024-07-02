@@ -78,6 +78,7 @@ import { ref, onMounted, computed } from "vue";
 import { useUserStore } from "../../stores/userStore";
 import { useRouter } from "vue-router";
 import Avatar from "./ProfileAvatar.vue";
+import { useToast } from "vue-toastification";
 
 const userStore = useUserStore();
 const router = useRouter();
@@ -94,6 +95,7 @@ const form = ref({
 
 const loading = ref(false);
 const errorMsg = ref("");
+const toastMsg = useToast();
 
 onMounted(() => {
   if (!isLoggedIn.value) {
@@ -132,13 +134,12 @@ async function updateProfile() {
       updated_at: new Date(),
     };
     await userStore.updateProfile(updates);
-    alert("Profile updated successfully");
+    toastMsg.success("Success: Updated Profile!", {
+      toastClassName: "custom-toast-success",
+    });
     router.push("/profile");
   } catch (error) {
-    errorMsg.value = error.message;
-    setTimeout(() => {
-      errorMsg.value = "";
-    }, 5000);
+    toastMsg.error(error.message);
   } finally {
     loading.value = false;
   }
