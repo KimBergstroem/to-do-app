@@ -10,7 +10,8 @@
 
     <div v-if="dataLoaded">
       <div
-        class="card flex flex-col items-center p-4 rounded shadow-sm bg-light">
+        class="card flex flex-col items-center p-4 rounded shadow-sm"
+        :style="{ background: bgColor }">
         <!-- Edit and Delete buttons -->
         <div
           class="d-flex justify-content-center justify-content-sm-start w-100 mt-2">
@@ -31,7 +32,7 @@
             v-model="editData.todosName"
             type="text"
             class="form-control mb-2" />
-          <h1 v-else class="custom-color-text-green text-center">
+          <h1 v-else class="text-center">
             {{ data.todosName }}
           </h1>
           <p class="fw-bold">
@@ -252,6 +253,10 @@ function generateUID() {
     return v.toString(16);
   });
 }
+
+const bgColor = computed(() => {
+  return data.value ? data.value.backgroundColor : "white";
+});
 
 const isLoggedIn = computed(() => taskStore.isLoggedIn);
 </script>
