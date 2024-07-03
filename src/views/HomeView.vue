@@ -13,9 +13,11 @@
                   <p class="card-text">
                     Start organizing your tasks efficiently.
                   </p>
-                  <button class="btn text-white btn-clr-primary btn-block">
-                    Create Task
-                  </button>
+                  <router-link
+                    to="/create"
+                    class="btn text-white btn-clr-primary btn-block"
+                    >Create Task</router-link
+                  >
                 </div>
               </div>
             </div>
@@ -40,7 +42,7 @@
               <div class="card">
                 <div class="card-body">
                   <h3 class="card-title">More Information</h3>
-                  <p class="card-text">Learn more about our capabilities.</p>
+                  <p class="card-text">Learn more about our capabilities.👍</p>
                   <button class="btn text-white btn-clr-primary btn-block">
                     Learn More
                   </button>
@@ -75,5 +77,3 @@ import { computed } from "vue";
 const userStore = useUserStore();
 const isLoggedIn = computed(() => userStore.isLoggedIn);
 </script>
-
-<style scoped></style>
