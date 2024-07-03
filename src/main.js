@@ -17,9 +17,10 @@ import {
   faTrashAlt,
   faUser,
   faLaptopFile,
+  faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faEdit, faTrashAlt, faUser, faLaptopFile);
+library.add(faEdit, faTrashAlt, faUser, faLaptopFile, faMagnifyingGlass);
 
 const app = createApp(App);
 
