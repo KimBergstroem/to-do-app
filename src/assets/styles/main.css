@@ -199,10 +199,6 @@ footer {
 }
 
 /* Text and Spacing */
-.text-muted {
-  color: #9faecb !important;
-}
-
 p {
   margin-top: 0;
   margin-bottom: 1rem;
@@ -252,7 +248,7 @@ p {
 }
 
 .stats {
-  background: #fff !important;
+  background: var(--custom-color) !important;
   color: #000 !important;
 }
 
