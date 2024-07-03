@@ -7,6 +7,7 @@ export const useUserStore = defineStore("user", {
     profile: null,
   }),
   actions: {
+    // Fetching user from database "Supabase" built in auth.user
     async fetchUser() {
       const user = supabase.auth.user();
       if (user) {
@@ -23,12 +24,14 @@ export const useUserStore = defineStore("user", {
       }
     },
 
+    // Update profile
     async updateProfile(updates) {
       const { error } = await supabase.from("profiles").upsert(updates);
       if (error) throw error;
       this.profile = { ...this.profile, ...updates };
     },
 
+    // Sign Up functionality
     async signUp(email, password) {
       const { user, error } = await supabase.auth.signUp({
         email: email,
@@ -47,6 +50,7 @@ export const useUserStore = defineStore("user", {
       }
     },
 
+    // Sign In functionality
     async signIn(email, password) {
       const { user, error } = await supabase.auth.signIn({
         email: email,
@@ -65,6 +69,7 @@ export const useUserStore = defineStore("user", {
       }
     },
 
+    // Sign Out functionality
     async signOut() {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
@@ -73,7 +78,6 @@ export const useUserStore = defineStore("user", {
       this.profile = null;
     },
   },
-
   getters: {
     isLoggedIn: (state) => !!state.user,
   },
