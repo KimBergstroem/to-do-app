@@ -78,12 +78,14 @@ Developer: [Kim Bergström](https://github.com/KimBergstroem) <br>
   - [Solved Bugs](#solved-bugs)
   - [Known Bugs](#known-bugs)
 
-- 📄 [**Credits**](#credits)
-  - [Code Used](#code-used)
+- 📄[**Credits**](#credits)
+  - [Vue3 Documentation](#vue3-documentation)
+  - [Pinia](#pinia-documentation)
+  - [W3 Schools](#w3-schools)
+  - [Bootstrap docs](#bootstrap-docs)
+  - [Various tutorials and YouTube channels](#various-tutorials-and-youtube-channels)
   - [Content](#content)
-  - [Media](#media)
-  - [Acknowledgments](#acknowledgments)
-  - [License](#license)
+- 📄[**Acknowledgments**](#acknowledgments)
 
 <p align="center">
   <img src="docs/readme.md/readme-divider.png" />
@@ -224,7 +226,7 @@ Emphasizing that the project timeline is expedited, the iterative approach maint
 The Reminder To Do application utilizes Supabase for its backend infrastructure, particularly for user authentication and data management. Supabase offers a comprehensive solution that significantly simplifies the development process by providing ready-made authentication mechanisms and database functionalities. This choice allows the project to focus more on core functionalities and user experience enhancements rather than spending time on building and managing custom database tables and authentication systems. By leveraging Supabase, the application benefits from robust security, seamless scalability, and efficient data handling, ensuring a reliable foundation for user interaction and data management.
 
 <p align="center">
-  <img src="docs/readme.md/readme-database-schema.png" />
+  <img src="docs/readme.md/readme-database-sch.png" />
 </p>
 
 ### Reminder TO Do Application Database Schema
@@ -295,21 +297,28 @@ Our accent color, comprising 10% of our color palette, features a refreshing sha
 
 ### **Typography**
 
-Google Fonts was used for the following fonts:
+The custom font stack `-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif` is utilized by default in Vue 3 framework applications to ensure consistent typography across different operating systems and devices.
 
-- **Cinzel** was selected for headings and larger text elements across the site. It boasts elegant serif letterforms, lending a touch of sophistication to the design.
+- **-apple-system**: Default system font for Apple devices.
+- **BlinkMacSystemFont**: System font used by Blink-based browsers on macOS, such as Safari.
+- **Segoe UI**: Default system font for Microsoft Windows and Windows Phone.
+- **Roboto**: Default system font for Android and Chrome OS.
+- **Oxygen**: Default system font for the KDE Plasma desktop environment.
+- **Ubuntu**: Default system font for the Ubuntu Linux distribution.
+- **Cantarell**: Default system font for the GNOME desktop environment.
+- **Fira Sans**: A sans-serif typeface designed for Mozilla and used in Firefox OS.
+- **Droid Sans**: A sans-serif typeface designed for Android.
+- **Helvetica Neue**: A widely used sans-serif font family.
 
-![Cinzel](image)
+**sans-serif**: A generic fallback category that includes various sans-serif fonts. It ensures compatibility across different devices and platforms where the specific fonts listed above are not available.
 
-- **Roboto** serves as the primary typeface for body text, including paragraphs containing questions and answers. Developed by Christian Robertson, Roboto is a versatile sans-serif font known for its clean, modern appearance and excellent legibility.
-
-![Roboto](image)
+This font stack is integrated into Vue 3 to optimize typography rendering and ensure a cohesive visual experience across diverse environments without requiring additional configuration.
 
 &nbsp;
 
 ### **Imagery**
 
-All the images were modified by me in Photoshop or Canva.
+All the images were modified by me in Photoshop program or Canva. Is there is any images displayed. Currently there is no images attached to this project. Maybe in the feature.
 
 &nbsp;
 
@@ -377,14 +386,16 @@ I have been mindful during coding to ensure that the website is as accessible fr
 
 ```json
 "dependencies": {
-  "@supabase/supabase-js": "^1.31.1",
-  "bootstrap": "^5.3.3",
-  "moment": "^2.29.4",
-  "pinia": "^2.0.17",
-  "pinia-plugin-persist": "^1.0.0",
-  "vue": "^3.2.37",
-  "vue-router": "^4.1.3"
-}
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@supabase/supabase-js": "^1.31.1",
+    "bootstrap": "^5.3.3",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.29",
+    "vue-router": "^4.3.3",
+    "vue-toastification": "^2.0.0-rc.5"
+  },
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -521,23 +532,58 @@ All testing was carried out in [Testing.md](TESTING.md).
 
 # **Credits**
 
-### **Code Used**
+I would like to express my gratitude to the following resources, which have been a huge help to me in the development of this Reminder To Do application project.
+
+### Vue3 Documentation
+
+The official Vue3 documentation has been an invaluable resource throughout the project, providing comprehensive guidance on passing variables, forms, templates, rendering and various aspects of vue3 development.
+
+- [Props](https://vuejs.org/guide/components/props.html)
+- [Events](https://vuejs.org/guide/components/events.html)
+- [Async Components](https://vuejs.org/guide/components/async.html)
+- [Component v-model](https://vuejs.org/guide/components/v-model.html)
+- [Routing](https://vuejs.org/guide/scaling-up/routing.html)
+- [State Management](https://vuejs.org/guide/scaling-up/state-management.html)
+
+### Pinia Documentation
+
+- [Pinia](https://pinia.vuejs.org/)
+
+### W3 Schools
+
+- [Fast and easy basic directives, watchers and in general](https://www.w3schools.com/vue/index.php)
+
+### Bootstrap docs
+
+- [Increase knowledge of bootstrap framework](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+
+### Various tutorials and YouTube channels
+
+I would like to extend my appreciation to the authors of the tutorials and YouTube channels that have shared their knowledge and expertise in Vue3 development, enabling me to learn and apply best practices in building this project.
+
+- [Net Ninja - Beginner tutorial](https://www.youtube.com/watch?v=YrxBCBibVo0&list=PL4cUxeGkcC9hYYGbV60Vq3IXYNfDk8At1)
+- [Traversy Media - Composition API project](https://www.youtube.com/watch?v=hNPwdOZ3qFU&t=3259s)
+- [Fireship - Vue.js Explained in 100 seconds](https://www.youtube.com/watch?v=nhBVL41-_Cw)
 
 &nbsp;
 
 ### **Content**
 
-Paragraphs / text for the webpage/readme was written together with [ChatGPT](https://chat.openai.com/)
+- Paragraphs / text for the webpage/readme was written together with [ChatGPT](https://chat.openai.com/)
 
-&nbsp;
-
-### **Media**
-
-&nbsp;
+- English spellchecker as Google Chrome extension [Grammarly](https://www.grammarly.com/)
 
 ### **Acknowledgments**
 
-I'd like to give recognition to the individuals who supported me in finishing this project:
+I'd like to give recognition to the individuals who supported me in completing this project:
+
+- My family, for their patience and assistance in identifying spelling mistakes and testing issues. Their support has been invaluable in improving the quality of this project.
+- Testers [Debbie B](https://github.com/DebbieBergstrom) and [Sandra B](https://github.com/SandraBergstrom) for their significant contributions in providing feedback, identifying errors, and offering valuable insights.
+- [Diego Z](https://github.com/dzc1), my Mentor and coach, for his exceptional guidance and expertise, which greatly contributed to my growth as a developer.
+
+[IronHack:](https://www.ironhack.com/) I am genuinely appreciative of the valuable feedback I received from the community.
+
+I am truly grateful for their contributions, which have greatly enriched my learning and development.
 
 &nbsp;
 
