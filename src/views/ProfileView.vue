@@ -16,7 +16,7 @@
           <div class="p-2 mt-2 bg-primary rounded text-white stats">
             <div class="d-flex flex-column">
               <span class="articles">Pending Task</span>
-              <span class="number1">38</span>
+              <span class="number1">{{ totalTasks }}</span>
             </div>
 
             <div class="d-flex flex-column">
@@ -60,10 +60,13 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import { useUserStore } from "../stores/userStore";
+import { useTaskStore } from "../stores/taskStore";
 import Avatar from "../components/profiles/ProfileAvatar.vue";
 
 const userStore = useUserStore();
+const taskStore = useTaskStore();
 const isLoggedIn = computed(() => userStore.isLoggedIn);
+const totalTasks = computed(() => taskStore.tasks.length);
 
 const loading = ref(false);
 const username = ref(null);
@@ -85,6 +88,7 @@ async function getProfile() {
     full_name.value = userStore.profile.full_name;
     work_title.value = userStore.profile.work_title;
     avatar_url.value = userStore.profile.avatar_url;
+    await taskStore.fetchTasks();
   } catch (error) {
     console.error("Error fetching profile:", error.message);
   } finally {
