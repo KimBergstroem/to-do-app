@@ -38,6 +38,16 @@
         <li class="nav-item">
           <router-link
             class="nav-link custom-nav-link"
+            to="/create"
+            exact
+            active-class="router-link-exact-active"
+            @click="isCollapsed = true"
+            >Create</router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link
+            class="nav-link custom-nav-link"
             to="/profile"
             exact
             active-class="router-link-exact-active"
@@ -68,18 +78,17 @@
       </div>
     </div>
   </nav>
-  <div v-show="errorMsg">{{ errorMsg }}</div>
 </template>
 
 <script setup>
 import { useUserStore } from "../stores/userStore";
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
 
 const userStore = useUserStore();
 const router = useRouter();
-
-const errorMsg = ref("");
+const toastMsg = useToast();
 
 let isCollapsed = ref(true);
 
@@ -93,13 +102,11 @@ const signOut = async () => {
   try {
     await userStore.signOut();
     router.push({ path: "/" });
-    console.log("Signed out successfully");
-    alert("Signed out successfully");
+    toastMsg.success("Success: Signing Out!", {
+      toastClassName: "custom-toast-success",
+    });
   } catch (error) {
-    errorMsg.value = error.message;
-    setTimeout(() => {
-      errorMsg.value = "";
-    }, 5000);
+    toastMsg.error(error.message);
   }
 };
 </script>

@@ -92,5 +92,3 @@ async function getProfile() {
   }
 }
 </script>
-
-<style scoped></style>
