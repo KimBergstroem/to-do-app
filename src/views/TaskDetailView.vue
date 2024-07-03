@@ -28,7 +28,7 @@
         <div class="w-full mt-4">
           <input
             v-if="edit"
-            v-model="data.todosName"
+            v-model="editData.todosName"
             type="text"
             class="form-control mb-2" />
           <h1 v-else class="custom-color-text-green text-center">
@@ -53,7 +53,7 @@
               >
               <input
                 v-if="edit"
-                v-model="item.todosInfo"
+                v-model="editData.todosInfo[index].todosInfo"
                 type="text"
                 class="form-control"
                 id="todoInfo" />
@@ -67,7 +67,7 @@
               >
               <input
                 v-if="edit"
-                v-model="item.whattodo"
+                v-model="editData.todosInfo[index].whattodo"
                 type="text"
                 class="form-control"
                 id="whattodo" />
@@ -81,7 +81,7 @@
               >
               <input
                 v-if="edit"
-                v-model="item.project"
+                v-model="editData.todosInfo[index].project"
                 type="text"
                 class="form-control"
                 id="project" />
@@ -95,7 +95,7 @@
               >
               <input
                 v-if="edit"
-                v-model="item.deadline"
+                v-model="editData.todosInfo[index].deadline"
                 type="date"
                 class="form-control"
                 id="deadline" />
@@ -113,8 +113,15 @@
           v-if="edit"
           type="button"
           @click="addTaskItem"
-          class="btn btn-clr-primary text-white mt-3">
+          class="btn btn-clr-primary m-1 text-white mt-3">
           Add New Task
+        </button>
+        <button
+          v-if="edit"
+          type="button"
+          @click="editMode"
+          class="btn btn-clr-primary m-1 text-white mt-3">
+          Cancel Edit
         </button>
         <router-link v-else to="/tasks" class="btn btn-clr-primary text-white"
           >Go back</router-link
@@ -146,6 +153,7 @@ const route = useRoute();
 const router = useRouter();
 const toastMsg = useToast();
 const data = ref(null);
+const editData = ref(null);
 const dataLoaded = ref(false);
 const edit = ref(false);
 
@@ -158,6 +166,9 @@ onMounted(async () => {
 // Toggle editMode for editing a particular task
 const editMode = () => {
   edit.value = !edit.value;
+  if (edit.value) {
+    editData.value = JSON.parse(JSON.stringify(data.value));
+  }
 };
 
 // Fetching the specific Task from database
@@ -175,9 +186,10 @@ const updateTask = async () => {
   try {
     await taskStore.updateTaskById({
       id: todoId,
-      todosName: data.value.todosName,
-      todosInfo: data.value.todosInfo,
+      todosName: editData.value.todosName,
+      todosInfo: editData.value.todosInfo,
     });
+    data.value = JSON.parse(JSON.stringify(editData.value));
     edit.value = false;
     toastMsg.success("Success: Updated Reminder!", {
       toastClassName: "custom-toast-success",
@@ -200,8 +212,8 @@ const deleteTask = async () => {
 };
 
 const deleteTaskItem = (id) => {
-  if (data.value.todosInfo.length > 1) {
-    data.value.todosInfo = data.value.todosInfo.filter(
+  if (editData.value.todosInfo.length > 1) {
+    editData.value.todosInfo = editData.value.todosInfo.filter(
       (todo) => todo.id !== id
     );
     return;
@@ -212,14 +224,14 @@ const deleteTaskItem = (id) => {
 };
 
 const addTaskItem = () => {
-  if (data.value.todosType === "personal") {
-    data.value.todosInfo.push({
+  if (editData.value.todosType === "personal") {
+    editData.value.todosInfo.push({
       id: generateUID(),
       todosInfo: "",
       whattodo: "",
     });
-  } else if (data.value.todosType === "work") {
-    data.value.todosInfo.push({
+  } else if (editData.value.todosType === "work") {
+    editData.value.todosInfo.push({
       id: generateUID(),
       todosInfo: "",
       project: "",
