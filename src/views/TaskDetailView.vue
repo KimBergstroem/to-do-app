@@ -35,9 +35,13 @@
           <h1 v-else class="text-center">
             {{ data.todosName }}
           </h1>
-          <p class="fw-bold">
-            Created at: {{ formatDateTime(data.created_at) }}
-          </p>
+          <div class="d-flex flex-column mt-2 small">
+            <p>Created at: <br />{{ formatDateTime(data.created_at) }}</p>
+            <p>
+              Latest update: <br />
+              {{ formatDateTime(data.updated_at) }}
+            </p>
+          </div>
         </div>
       </div>
 
