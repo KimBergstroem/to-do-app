@@ -14,8 +14,8 @@ const { user } = storeToRefs(userStore);
 onMounted(async () => {
   try {
     await userStore.fetchUser();
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.log(error.message);
   }
 });
 
