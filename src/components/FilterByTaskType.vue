@@ -5,19 +5,19 @@
     <div
       @click="filterTasks(null)"
       :class="{ 'custom-color-text-green': currentType === null }"
-      class="fw-bold small">
+      class="fw-bold small cursor-pointer">
       All
     </div>
     <div
       @click="filterTasks('work')"
       :class="{ 'custom-color-text-green': currentType === 'work' }"
-      class="fw-bold small">
+      class="fw-bold small cursor-pointer">
       Work
     </div>
     <div
       @click="filterTasks('personal')"
       :class="{ 'custom-color-text-green': currentType === 'personal' }"
-      class="fw-bold small">
+      class="fw-bold small cursor-pointer">
       Personal
     </div>
   </div>
