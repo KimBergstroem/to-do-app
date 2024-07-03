@@ -12,22 +12,26 @@
           type="text"
           placeholder="Search..." />
       </div>
+      <!-- Filter -->
+      <FilterByTaskType
+        :currentType="currentType"
+        @filterByType="setcurrentType" />
 
       <div v-if="taskStore.dataLoaded">
         <!-- No Data -->
         <div
-          v-if="displayedTasks.length === 0"
+          v-if="filteredTasks.length === 0"
           class="w-100 d-flex flex-column align-items-center">
           <h1 class="text-2xl">Looks empty here...</h1>
-          <router-link class="btn text-white btn-clr-primary mt-3" to="/create"
-            >Create Task</router-link
-          >
+          <router-link class="btn text-white btn-clr-primary mt-3" to="/create">
+            Create Task
+          </router-link>
         </div>
 
         <!-- Data cards -->
         <div
           class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-          <div class="col" v-for="todo in displayedTasks" :key="todo.id">
+          <div class="col" v-for="todo in filteredTasks" :key="todo.id">
             <router-link
               :to="{ name: 'View-todo', params: { todoId: todo.id } }"
               class="card shadow-sm text-decoration-none text-dark"
@@ -62,23 +66,28 @@
     </div>
     <div v-else class="d-flex flex-column align-items-center">
       <h1 class="text-2xl">Please log in before you can manage your tasks.</h1>
-      <router-link class="btn text-white btn-clr-primary mt-3" to="/auth/signIn"
-        >Sign In</router-link
-      >
+      <router-link
+        class="btn text-white btn-clr-primary mt-3"
+        to="/auth/signIn">
+        Sign In
+      </router-link>
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, ref, computed, watch } from "vue";
 import { useTaskStore } from "../stores/taskStore";
 import { useUserStore } from "../stores/userStore";
-import { ref, watch } from "vue";
+import FilterByTaskType from "../components/FilterByTaskType.vue";
 
 const taskStore = useTaskStore();
 const userStore = useUserStore();
-const search = ref("");
+
 const isLoggedIn = userStore.isLoggedIn;
+
+const search = ref("");
+const currentType = ref(null);
 const displayedTasks = ref([]);
 
 onMounted(() => {
@@ -96,13 +105,29 @@ const fetchAndDisplayTasks = async () => {
   }
 };
 
-watch(search, (newValue) => {
-  if (newValue === "") {
-    displayedTasks.value = taskStore.tasks;
-  } else {
-    displayedTasks.value = taskStore.tasks.filter((task) =>
-      task.todosName.toLowerCase().includes(newValue.toLowerCase())
+const setcurrentType = (selectedType) => {
+  currentType.value = selectedType;
+};
+
+const filteredTasks = computed(() => {
+  let tasks = displayedTasks.value;
+
+  //Filter by Task
+  if (currentType.value) {
+    tasks = tasks.filter((task) => task.todosType === currentType.value);
+  }
+
+  //Search
+  if (search.value) {
+    tasks = tasks.filter((task) =>
+      task.todosName.toLowerCase().includes(search.value.toLowerCase())
     );
   }
+
+  return tasks;
+});
+
+watch(search, () => {
+  fetchAndDisplayTasks();
 });
 </script>

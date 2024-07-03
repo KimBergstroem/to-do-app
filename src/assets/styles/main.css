@@ -62,7 +62,7 @@ a {
 }
 
 .custom-color-text-green {
-  color: var(--custom-color-brand-secondary);
+  color: var(--custom-color-brand);
 }
 
 .btn-clr-primary:hover,
