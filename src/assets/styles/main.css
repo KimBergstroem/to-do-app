@@ -76,6 +76,13 @@ a {
   text-decoration: underline;
 }
 
+.rounded-end {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
 /* Main / app wrapper */
 .app-wrapper {
   display: flex;
@@ -121,6 +128,17 @@ footer {
   100% {
     background-position: 0% 50%;
   }
+}
+
+/* Password icon styling */
+.password-toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--custom-color-secondary);
+  z-index: 10;
 }
 
 /* Search bar */

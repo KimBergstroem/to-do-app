@@ -9,28 +9,26 @@
                 <h1>Login</h1>
                 <p class="text-muted">Sign In to your account</p>
                 <div class="input-group mb-3 form">
-                  <span class="input-group-addon">
-                    <i class="fa fa-user"></i>
-                  </span>
                   <input
                     type="email"
-                    class="input-field form-control"
+                    class="input-field form-control rounded-end"
                     placeholder="example@gmail.com"
                     id="email"
                     v-model="email"
                     required />
                 </div>
                 <div class="input-group mb-4">
-                  <span class="input-group-addon">
-                    <i class="fa fa-lock"></i>
-                  </span>
                   <input
-                    type="password"
-                    class="input-field form-control"
+                    :type="passwordVisible ? 'text' : 'password'"
+                    class="input-field form-control rounded-end"
                     placeholder="**********"
                     id="password"
                     v-model="password"
                     required />
+                  <span @click="togglePassword" class="password-toggle-icon">
+                    <font-awesome-icon
+                      :icon="passwordVisible ? 'eye-slash' : 'eye'" />
+                  </span>
                 </div>
                 <div class="row">
                   <div class="col-6">
@@ -44,7 +42,7 @@
                     </button>
                   </div>
                   <div class="col-6 text-right">
-                    <button type="button" class="btn btn-link px-0 text-muted">
+                    <button type="button" class="btn px-0 text-white small">
                       Forgot password?
                     </button>
                   </div>
@@ -78,20 +76,26 @@
 
 <script setup>
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 import { supabase } from "../../supabase/supabase";
-import { useUserStore } from "../../stores/userStore";
 import { useToast } from "vue-toastification";
+import { useRouter } from "vue-router";
+import { useUserStore } from "../../stores/userStore";
 import PersonalRouter from "./PersonalRouter.vue";
+
+const route = "/auth/signup";
+const buttonText = "Sign Up";
 
 const email = ref("");
 const password = ref("");
+const passwordVisible = ref(false);
+
 const errorMsg = ref("");
 const redirect = useRouter();
 const toastMsg = useToast();
 
-const route = "/auth/signup";
-const buttonText = "Sign Up";
+const togglePassword = () => {
+  passwordVisible.value = !passwordVisible.value;
+};
 
 const signIn = async () => {
   try {

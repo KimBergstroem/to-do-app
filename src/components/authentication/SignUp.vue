@@ -12,12 +12,9 @@
                   <label for="email" class="col-12 mb-2">Email</label>
                   <div class="col-12">
                     <div class="input-group">
-                      <span class="input-group-addon"
-                        ><i class="fa fa-user"></i
-                      ></span>
                       <input
                         type="email"
-                        class="input-field form-control"
+                        class="input-field form-control rounded-end"
                         id="email"
                         placeholder="example@gmail.com"
                         v-model="email"
@@ -29,16 +26,19 @@
                   <label for="password" class="col-12 mb-2">Password</label>
                   <div class="col-12">
                     <div class="input-group">
-                      <span class="input-group-addon"
-                        ><i class="fa fa-lock"></i
-                      ></span>
                       <input
-                        type="password"
-                        class="input-field form-control"
+                        :type="passwordVisible ? 'text' : 'password'"
+                        class="input-field form-control rounded-end"
                         id="password"
                         placeholder="**********"
                         v-model="password"
                         required />
+                      <span
+                        @click="togglePassword"
+                        class="password-toggle-icon">
+                        <font-awesome-icon
+                          :icon="passwordVisible ? 'eye-slash' : 'eye'" />
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -48,16 +48,19 @@
                   >
                   <div class="col-12">
                     <div class="input-group">
-                      <span class="input-group-addon"
-                        ><i class="fa fa-lock"></i
-                      ></span>
                       <input
-                        type="password"
-                        class="input-field form-control"
+                        :type="passwordVisible ? 'text' : 'password'"
+                        class="input-field form-control rounded-end"
                         id="confirmPassword"
                         placeholder="**********"
                         v-model="confirmPassword"
                         required />
+                      <span
+                        @click="togglePassword"
+                        class="password-toggle-icon">
+                        <font-awesome-icon
+                          :icon="passwordVisible ? 'eye-slash' : 'eye'" />
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -72,7 +75,6 @@
                       Submit
                     </button>
                   </div>
-                  <div class="col-6 text-right"></div>
                 </div>
               </form>
             </div>
@@ -104,28 +106,32 @@
 <script setup>
 import { ref } from "vue";
 import { supabase } from "../../supabase/supabase";
+import { useToast } from "vue-toastification";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../../stores/userStore";
 import PersonalRouter from "./PersonalRouter.vue";
-import { useToast } from "vue-toastification";
 
 const route = "/auth/signIn";
 const buttonText = "Sign In";
 
-// Input Fields
 const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
+const passwordVisible = ref(false);
 
 const errorMsg = ref("");
 const redirect = useRouter();
 const toastMsg = useToast();
 
+const togglePassword = () => {
+  passwordVisible.value = !passwordVisible.value;
+};
+
 const signUp = async () => {
   if (password.value === confirmPassword.value) {
     try {
       await useUserStore().signUp(email.value, password.value);
-      toastMsg.success("An confirmation email has been sent to you!", {
+      toastMsg.success("A confirmation email has been sent to you!", {
         toastClassName: "custom-toast-success",
       });
       redirect.push({ path: "/auth/signIn" });

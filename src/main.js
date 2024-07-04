@@ -18,9 +18,19 @@ import {
   faUser,
   faLaptopFile,
   faMagnifyingGlass,
+  faEye,
+  faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faEdit, faTrashAlt, faUser, faLaptopFile, faMagnifyingGlass);
+library.add(
+  faEdit,
+  faTrashAlt,
+  faUser,
+  faLaptopFile,
+  faMagnifyingGlass,
+  faEye,
+  faEyeSlash
+);
 
 const app = createApp(App);
 
