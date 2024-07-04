@@ -31,7 +31,7 @@ export const useUserStore = defineStore("user", {
       this.profile = { ...this.profile, ...updates };
     },
 
-    // Sign Up functionality
+    // Sign Up
     async signUp(email, password) {
       const { user, error } = await supabase.auth.signUp({
         email: email,
@@ -50,7 +50,7 @@ export const useUserStore = defineStore("user", {
       }
     },
 
-    // Sign In functionality
+    // Sign In
     async signIn(email, password) {
       const { user, error } = await supabase.auth.signIn({
         email: email,
@@ -69,13 +69,45 @@ export const useUserStore = defineStore("user", {
       }
     },
 
-    // Sign Out functionality
+    // Sign Out
     async signOut() {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
 
       this.user = null;
       this.profile = null;
+    },
+
+    // Password Reset: Send Reset Email
+    async passwordReset(email) {
+      try {
+        const production_url =
+          import.meta.env.VITE_PROD_URL ||
+          "http://localhost:5173/auth/password-update";
+        const { data, error } = await supabase.auth.api.resetPasswordForEmail(
+          email,
+          {
+            redirectTo: production_url, // Switching between production or development
+          }
+        );
+        if (error) throw error;
+      } catch (error) {
+        console.error("Password reset failed:", error.message);
+        throw error;
+      }
+    },
+
+    // Password Reset: Update Password
+    async updatePassword(newPassword) {
+      try {
+        const { data, error } = await supabase.auth.updateUser({
+          password: newPassword,
+        });
+        if (error) throw error;
+      } catch (error) {
+        console.error("Update password failed:", error.message);
+        throw error;
+      }
     },
   },
   getters: {

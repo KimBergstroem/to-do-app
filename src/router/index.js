@@ -8,6 +8,7 @@ import TaskCreate from "../components/tasks/TaskCreate.vue";
 import Auth from "../components/authentication/Auth.vue";
 import SignIn from "../components/authentication/SignIn.vue";
 import SignUp from "../components/authentication/SignUp.vue";
+import PasswordUpdate from "../components/authentication/PasswordUpdate.vue";
 
 const routes = [
   {
@@ -26,6 +27,13 @@ const routes = [
         component: SignUp,
         meta: {
           title: "Sign Up",
+        },
+      },
+      {
+        path: "password-update",
+        component: PasswordUpdate,
+        meta: {
+          title: "Update Password",
         },
       },
     ],

@@ -42,7 +42,10 @@
                     </button>
                   </div>
                   <div class="col-6 text-right">
-                    <button type="button" class="btn px-0 text-white small">
+                    <button
+                      type="button"
+                      class="btn px-0 text-white small"
+                      @click="forgotPasswordAlert">
                       Forgot password?
                     </button>
                   </div>
@@ -102,6 +105,24 @@ const signIn = async () => {
     await useUserStore().signIn(email.value, password.value);
     redirect.push({ path: "/" });
     toastMsg.success("Success: Signing In!", {
+      toastClassName: "custom-toast-success",
+    });
+  } catch (error) {
+    toastMsg.error(error.message);
+  }
+};
+
+const forgotPasswordAlert = () => {
+  const inputEmail = prompt("Enter your email address for password reset:");
+  if (inputEmail) {
+    forgotPassword(inputEmail.trim());
+  }
+};
+
+const forgotPassword = async (email) => {
+  try {
+    await useUserStore().passwordReset(email);
+    toastMsg.success("Password reset email sent. Check your inbox!", {
       toastClassName: "custom-toast-success",
     });
   } catch (error) {
