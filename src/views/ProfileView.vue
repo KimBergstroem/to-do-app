@@ -74,6 +74,7 @@ const full_name = ref(null);
 const website = ref(null);
 const avatar_url = ref(null);
 const work_title = ref(null);
+const errorMsg = ref(null);
 
 onMounted(() => {
   getProfile();
@@ -90,7 +91,7 @@ async function getProfile() {
     avatar_url.value = userStore.profile.avatar_url;
     await taskStore.fetchTasks();
   } catch (error) {
-    console.error("Error fetching profile:", error.message);
+    errorMsg = `Error fetching profile: ${error.message}`;
   } finally {
     loading.value = false;
   }

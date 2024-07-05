@@ -1,7 +1,7 @@
 <template>
   <div class="container py-4">
     <div v-if="isLoggedIn">
-      <div class="card shadow-sm">
+      <div class="card shadow-sm bg-darken text-white">
         <div class="card-body">
           <!-- Form -->
           <form @submit.prevent="createTask">
@@ -68,7 +68,7 @@
               <button
                 @click="addTaskItem('personal')"
                 type="button"
-                class="btn btn-primary">
+                class="btn btn-clr-primary text-white">
                 Add More Info
               </button>
             </div>
@@ -108,7 +108,7 @@
               <button
                 @click="addTaskItem('work')"
                 type="button"
-                class="btn btn-primary">
+                class="btn btn-clr-primary text-white">
                 Add More Info
               </button>
             </div>
@@ -194,3 +194,10 @@ function generateUID() {
   });
 }
 </script>
+
+<style scoped>
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+</style>
