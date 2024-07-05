@@ -32,106 +32,112 @@
             v-model="editData.todosName"
             type="text"
             class="form-control mb-2" />
-          <h1 v-else class="text-center">
-            {{ data.todosName }}
-          </h1>
+          <h1 v-else class="text-center">{{ data.todosName }}</h1>
           <div class="d-flex flex-column mt-2 small">
-            <p>Created at: <br />{{ formatDateTime(data.created_at) }}</p>
             <p>
-              Latest update: <br />
-              {{ formatDateTime(data.updated_at) }}
+              Created at: <br /><span class="fw-bold">{{
+                formatDateTime(data.created_at)
+              }}</span>
             </p>
           </div>
         </div>
       </div>
 
-      <!-- Task Info -->
-      <div class="mt-4 p-4 rounded text-black bg-light">
-        <div v-for="(item, index) in data.todosInfo" :key="index" class="mb-3">
-          <div class="border rounded p-3 d-flex flex-column">
-            <div class="mb-3">
-              <h2>Task #{{ index + 1 }}</h2>
-              <label
-                for="todoInfo"
-                class="form-label text-black text-at-light-green"
-                >Information</label
-              >
-              <input
-                v-if="edit"
-                v-model="editData.todosInfo[index].todosInfo"
-                type="text"
-                class="form-control"
-                id="todoInfo" />
-              <p v-else>{{ item.todosInfo }}</p>
-            </div>
-            <div class="mb-3" v-if="data.todosType === 'personal'">
-              <label
-                for="whattodo"
-                class="form-label text-black text-at-light-green"
-                >What to do</label
-              >
-              <input
-                v-if="edit"
-                v-model="editData.todosInfo[index].whattodo"
-                type="text"
-                class="form-control"
-                id="whattodo" />
-              <p v-else>{{ item.whattodo }}</p>
-            </div>
-            <div v-if="data.todosType === 'work'" class="mb-3">
-              <label
-                for="project"
-                class="form-label text-black text-at-light-green"
-                >Project</label
-              >
-              <input
-                v-if="edit"
-                v-model="editData.todosInfo[index].project"
-                type="text"
-                class="form-control"
-                id="project" />
-              <p v-else>{{ item.project }}</p>
-            </div>
-            <div v-if="data.todosType === 'work'" class="mb-3">
-              <label
-                for="deadline"
-                class="form-label text-black text-at-light-green"
-                >Deadline</label
-              >
-              <input
-                v-if="edit"
-                v-model="editData.todosInfo[index].deadline"
-                type="date"
-                class="form-control"
-                id="deadline" />
-              <p v-else class="fw-bold">{{ item.deadline }}</p>
-            </div>
-            <button
-              v-if="edit"
-              @click="deleteTaskItem(item.id)"
-              class="btn btn-sm btn-danger mt-auto">
-              Delete
-            </button>
-          </div>
+      <!-- Task Items Table -->
+      <div class="mt-4 p-4 rounded bg-darken text-white shadow-sm">
+        <h2 class="mb-3">Tasks</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped custom-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Information</th>
+                <th v-if="editData.todosType === 'personal'">What to do</th>
+                <th v-if="editData.todosType === 'work'">Project</th>
+                <th v-if="editData.todosType === 'work'">Deadline</th>
+                <th v-if="edit">Action</th>
+                <th v-else>Finished</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item, index) in editData.todosInfo" :key="item.id">
+                <td>{{ index + 1 }}</td>
+                <td>
+                  <div v-if="edit">
+                    <input
+                      v-model="item.todosInfo"
+                      type="text"
+                      class="form-control" />
+                  </div>
+                  <p v-else>{{ item.todosInfo }}</p>
+                </td>
+                <td v-if="editData.todosType === 'personal'">
+                  <div v-if="edit">
+                    <input
+                      v-model="item.whattodo"
+                      type="text"
+                      class="form-control" />
+                  </div>
+                  <p v-else>{{ item.whattodo }}</p>
+                </td>
+                <td v-if="editData.todosType === 'work'">
+                  <div v-if="edit">
+                    <input
+                      v-model="item.project"
+                      type="text"
+                      class="form-control" />
+                  </div>
+                  <p v-else>{{ item.project }}</p>
+                </td>
+                <td v-if="editData.todosType === 'work'">
+                  <div v-if="edit">
+                    <input
+                      v-model="item.deadline"
+                      type="date"
+                      class="form-control" />
+                  </div>
+                  <p v-else class="fw-bold">{{ item.deadline }}</p>
+                </td>
+                <td>
+                  <template v-if="edit">
+                    <button
+                      @click="deleteTaskItem(item.id)"
+                      class="btn btn-sm btn-danger">
+                      Delete
+                    </button>
+                  </template>
+                  <template v-else>
+                    <input type="checkbox" />
+                  </template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <button
-          v-if="edit"
-          type="button"
-          @click="addTaskItem"
-          class="btn btn-clr-primary m-1 text-white mt-3">
-          Add New Task
-        </button>
-        <button
-          v-if="edit"
-          type="button"
-          @click="editMode"
-          class="btn btn-clr-primary m-1 text-white mt-3">
-          Cancel Edit
-        </button>
-        <router-link v-else to="/tasks" class="btn btn-clr-primary text-white"
-          >Go back</router-link
-        >
+
+        <!-- Buttons -->
+        <div class="mt-3">
+          <button
+            v-if="edit"
+            @click="addTaskItem"
+            class="btn btn-clr-primary text-white m-1">
+            Add New Task
+          </button>
+          <button
+            v-if="edit"
+            @click="cancelEdit"
+            class="btn btn-clr-primary text-white m-1">
+            Cancel Edit
+          </button>
+          <router-link
+            v-else
+            to="/tasks"
+            class="btn btn-clr-primary text-white m-1"
+            >Go back</router-link
+          >
+        </div>
       </div>
+
       <!-- Update Button -->
       <button
         v-if="edit"
@@ -149,14 +155,14 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import { useTaskStore } from "../stores/taskStore";
 import { useRoute, useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
+import { useTaskStore } from "../stores/taskStore";
 
-const taskStore = useTaskStore();
 const route = useRoute();
 const router = useRouter();
 const toastMsg = useToast();
+const taskStore = useTaskStore();
 const data = ref(null);
 const editData = ref(null);
 const dataLoaded = ref(false);
@@ -168,6 +174,18 @@ onMounted(async () => {
   await fetchData();
 });
 
+// Fetching the specific Task from database
+const fetchData = async () => {
+  try {
+    dataLoaded.value = false;
+    data.value = await taskStore.fetchTaskById(todoId);
+    editData.value = JSON.parse(JSON.stringify(data.value));
+    dataLoaded.value = true;
+  } catch (error) {
+    toastMsg.error(`${error.message}`);
+  }
+};
+
 // Toggle editMode for editing a particular task
 const editMode = () => {
   edit.value = !edit.value;
@@ -176,15 +194,9 @@ const editMode = () => {
   }
 };
 
-// Fetching the specific Task from database
-const fetchData = async () => {
-  try {
-    dataLoaded.value = false;
-    data.value = await taskStore.fetchTaskById(todoId);
-    dataLoaded.value = true;
-  } catch (error) {
-    toastMsg.error(`${error.message}`);
-  }
+const cancelEdit = () => {
+  edit.value = false;
+  editData.value = JSON.parse(JSON.stringify(data.value));
 };
 
 const updateTask = async () => {
@@ -221,10 +233,8 @@ const deleteTaskItem = (id) => {
     editData.value.todosInfo = editData.value.todosInfo.filter(
       (todo) => todo.id !== id
     );
-    return;
   } else {
     toastMsg.error("Cannot delete the last task item!");
-    return;
   }
 };
 
@@ -264,3 +274,10 @@ const bgColor = computed(() => {
 
 const isLoggedIn = computed(() => taskStore.isLoggedIn);
 </script>
+
+<style scoped>
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+</style>

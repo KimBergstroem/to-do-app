@@ -167,6 +167,47 @@ footer {
   margin-left: 10px;
 }
 
+/* Task Table Style */
+/* Custom table styles */
+.custom-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 8px;
+  text-align: left;
+}
+
+.custom-table th {
+  background-color: var(--custom-color-brand);
+  color: var(--custom-color);
+  border: none;
+}
+
+.custom-table td {
+  background-color: var(--custom-panel-color);
+  color: var(--custom-color);
+  border: none;
+}
+
+.custom-table tr {
+  border: none;
+}
+
+/* Rounded borders */
+.custom-table th:first-child,
+.custom-table td:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.custom-table th:last-child,
+.custom-table td:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
 /* Container */
 .container {
   margin-right: auto;
