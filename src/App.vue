@@ -5,12 +5,12 @@ import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { useUserStore } from "./stores/userStore";
 import NavbarSection from "./components/Nav.vue";
-import FooterSec from "./components/Footer.vue";
+import FooterSection from "./components/Footer.vue";
 
 const router = useRouter();
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
-//To see if it working now with the error.
+
 onMounted(async () => {
   try {
     await userStore.fetchUser();
@@ -37,7 +37,7 @@ const isTaskCreate = computed(() => {
     </main>
 
     <footer>
-      <FooterSec />
+      <FooterSection />
     </footer>
 
     <router-link v-if="!isTaskCreate" to="/create" class="create-task-button">
