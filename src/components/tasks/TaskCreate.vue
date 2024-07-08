@@ -135,7 +135,7 @@
 import { ref, computed } from "vue";
 import { useTaskStore } from "../../stores/taskStore";
 import { useToast } from "vue-toastification";
-import { validateTaskData } from "./validateTaskData.js";
+import { validateTaskData } from "./ValidateTaskData.js";
 
 const todosName = ref("");
 const todosType = ref("select-todo");

@@ -161,7 +161,7 @@ import { ref, computed, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import { useTaskStore } from "../stores/taskStore";
-import { validateTaskData } from "../components/tasks/validateTaskData.js";
+import { validateTaskData } from "../components/tasks/ValidateTaskData.js";
 
 const route = useRoute();
 const router = useRouter();
