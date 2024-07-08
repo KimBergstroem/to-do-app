@@ -31,14 +31,14 @@
                   </span>
                 </div>
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-12 col-md-6">
                     <button
-                      class="button text-white btn btn-clr-primary mb-2"
+                      class="button text-white btn btn-clr-primary mb-2 w-100"
                       type="submit">
                       Enter
                     </button>
                   </div>
-                  <div class="col-6 text-right">
+                  <div class="col-12 col-md-6 text-md-right">
                     <button
                       type="button"
                       class="btn px-0 text-white small"
