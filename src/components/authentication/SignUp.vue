@@ -17,7 +17,7 @@
                         class="input-field form-control rounded-end"
                         id="email"
                         placeholder="example@gmail.com"
-                        v-model="email"
+                        v-model="formData.email"
                         required />
                     </div>
                   </div>
@@ -31,7 +31,7 @@
                         class="input-field form-control rounded-end"
                         id="password"
                         placeholder="**********"
-                        v-model="password"
+                        v-model="formData.password"
                         required />
                       <span
                         @click="togglePassword"
@@ -53,7 +53,7 @@
                         class="input-field form-control rounded-end"
                         id="confirmPassword"
                         placeholder="**********"
-                        v-model="confirmPassword"
+                        v-model="formData.confirmPassword"
                         required />
                       <span
                         @click="togglePassword"
@@ -66,9 +66,6 @@
                 </div>
                 <div class="row">
                   <div class="col-12 col-md-6">
-                    <div class="mb-3 text-danger" v-show="errorMsg">
-                      {{ errorMsg }}
-                    </div>
                     <button
                       class="button text-white btn btn-clr-primary mb-2 w-100"
                       type="submit">
@@ -105,21 +102,22 @@
 
 <script setup>
 import { ref } from "vue";
-import { supabase } from "../../supabase/supabase";
 import { useToast } from "vue-toastification";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../../stores/userStore";
+import { validateForm } from "./validateAuthData.js";
 import PersonalRouter from "./PersonalRouter.vue";
+
+const formData = ref({
+  email: "",
+  password: "",
+  confirmPassword: "",
+});
 
 const route = "/auth/signIn";
 const buttonText = "Sign In";
 
-const email = ref("");
-const password = ref("");
-const confirmPassword = ref("");
 const passwordVisible = ref(false);
-
-const errorMsg = ref("");
 const redirect = useRouter();
 const toastMsg = useToast();
 
@@ -128,20 +126,22 @@ const togglePassword = () => {
 };
 
 const signUp = async () => {
-  if (password.value === confirmPassword.value) {
-    try {
-      await useUserStore().signUp(email.value, password.value);
-      toastMsg.success("A confirmation email has been sent to you!", {
-        toastClassName: "custom-toast-success",
-      });
-      redirect.push({ path: "/auth/signIn" });
-    } catch (error) {
-      toastMsg.error(error.message);
-    }
+  const { areAllValid, validationResults } = validateForm(formData.value);
+
+  if (!areAllValid) {
+    const firstError = validationResults.find((result) => !result.meets);
+    toastMsg.error(firstError.invalidMessage);
     return;
-  } else {
-    toastMsg.error("Password does not match");
   }
-  errorMsg.value = "";
+
+  try {
+    await useUserStore().signUp(formData.value.email, formData.value.password);
+    toastMsg.success("A confirmation email has been sent to you!", {
+      toastClassName: "custom-toast-success",
+    });
+    redirect.push({ path: "/auth/signIn" });
+  } catch (error) {
+    toastMsg.error(error.message);
+  }
 };
 </script>

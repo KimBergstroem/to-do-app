@@ -79,6 +79,7 @@ import { useUserStore } from "../../stores/userStore";
 import { useRouter } from "vue-router";
 import Avatar from "./ProfileAvatar.vue";
 import { useToast } from "vue-toastification";
+import { validateProfileData } from "./validateProfileData.js";
 
 const userStore = useUserStore();
 const router = useRouter();
@@ -133,6 +134,13 @@ async function updateProfile() {
       avatar_url: form.value.avatar_url,
       updated_at: new Date(),
     };
+
+    const validationError = validateProfileData(updates);
+    if (validationError) {
+      toastMsg.error(validationError);
+      return;
+    }
+
     await userStore.updateProfile(updates);
     toastMsg.success("Success: Updated Profile!", {
       toastClassName: "custom-toast-success",

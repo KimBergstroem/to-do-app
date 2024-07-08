@@ -31,18 +31,14 @@
                   </span>
                 </div>
                 <div class="row">
-                  <div class="col-12 col-md-6">
-                    <div class="mb-3 text-danger" v-show="errorMsg">
-                      {{ errorMsg }}
-                    </div>
+                  <div class="col-6">
                     <button
-                      class="button text-white btn btn-clr-primary mb-2 w-100"
+                      class="button text-white btn btn-clr-primary mb-2"
                       type="submit">
                       Enter
                     </button>
                   </div>
-                  <div class="col-12 col-md-6 text-md-right">
-                    <!-- Adjusted column classes -->
+                  <div class="col-6 text-right">
                     <button
                       type="button"
                       class="btn px-0 text-white small"
@@ -80,10 +76,10 @@
 
 <script setup>
 import { ref } from "vue";
-import { supabase } from "../../supabase/supabase";
 import { useToast } from "vue-toastification";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../../stores/userStore";
+import { validateForm } from "./validateAuthData.js";
 import PersonalRouter from "./PersonalRouter.vue";
 
 const route = "/auth/signup";
@@ -93,7 +89,6 @@ const email = ref("");
 const password = ref("");
 const passwordVisible = ref(false);
 
-const errorMsg = ref("");
 const redirect = useRouter();
 const toastMsg = useToast();
 
@@ -102,6 +97,17 @@ const togglePassword = () => {
 };
 
 const signIn = async () => {
+  const { areAllValid, validationResults } = validateForm({
+    email: email.value,
+    password: password.value,
+  });
+
+  if (!areAllValid) {
+    const firstError = validationResults.find((result) => !result.meets);
+    toastMsg.error(firstError.invalidMessage);
+    return;
+  }
+
   try {
     await useUserStore().signIn(email.value, password.value);
     redirect.push({ path: "/" });
