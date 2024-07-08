@@ -10,7 +10,7 @@ import FooterSec from "./components/Footer.vue";
 const router = useRouter();
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
-
+//To see if it working now with the error.
 onMounted(async () => {
   try {
     await userStore.fetchUser();
