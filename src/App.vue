@@ -5,7 +5,7 @@ import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { useUserStore } from "./stores/userStore";
 import NavbarSection from "./components/Nav.vue";
-import FooterSection from "./components/Footer.vue";
+import FooterSec from "./components/Footer.vue";
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -37,7 +37,7 @@ const isTaskCreate = computed(() => {
     </main>
 
     <footer>
-      <FooterSection />
+      <FooterSec />
     </footer>
 
     <router-link v-if="!isTaskCreate" to="/create" class="create-task-button">
