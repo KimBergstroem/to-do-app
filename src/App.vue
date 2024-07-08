@@ -5,7 +5,7 @@ import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { useUserStore } from "./stores/userStore";
 import NavbarSection from "./components/Nav.vue";
-import FooterSection from "./components/Footer.vue";
+import FooterSection from "./components/footer.vue";
 
 const router = useRouter();
 const userStore = useUserStore();
