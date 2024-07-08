@@ -79,7 +79,7 @@
 import { onMounted, ref, computed, watch } from "vue";
 import { useTaskStore } from "../stores/taskStore";
 import { useUserStore } from "../stores/userStore";
-import FilterByTaskType from "../components/FilterByTaskType.vue";
+import FilterByTaskType from "../components/tasks/FilterByTaskType.vue";
 
 const taskStore = useTaskStore();
 const userStore = useUserStore();
