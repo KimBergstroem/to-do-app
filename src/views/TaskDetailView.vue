@@ -76,7 +76,8 @@
                     <input
                       v-model="item.whattodo"
                       type="text"
-                      class="form-control" />
+                      class="form-control"
+                      required />
                   </div>
                   <p v-else>{{ item.whattodo }}</p>
                 </td>
@@ -85,7 +86,8 @@
                     <input
                       v-model="item.project"
                       type="text"
-                      class="form-control" />
+                      class="form-control"
+                      required />
                   </div>
                   <p v-else>{{ item.project }}</p>
                 </td>
@@ -94,7 +96,8 @@
                     <input
                       v-model="item.deadline"
                       type="date"
-                      class="form-control" />
+                      class="form-control"
+                      required />
                   </div>
                   <p v-else class="fw-bold">{{ item.deadline }}</p>
                 </td>
@@ -158,6 +161,7 @@ import { ref, computed, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import { useTaskStore } from "../stores/taskStore";
+import { validateTaskData } from "../components/tasks/ValidateTaskData.js";
 
 const route = useRoute();
 const router = useRouter();
@@ -200,6 +204,11 @@ const cancelEdit = () => {
 };
 
 const updateTask = async () => {
+  const validationError = validateTaskData(editData.value);
+  if (validationError) {
+    toastMsg.error(validationError);
+    return;
+  }
   try {
     await taskStore.updateTaskById({
       id: todoId,

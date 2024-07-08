@@ -135,6 +135,7 @@
 import { ref, computed } from "vue";
 import { useTaskStore } from "../../stores/taskStore";
 import { useToast } from "vue-toastification";
+import { validateTaskData } from "../tasks/ValidateTaskData.js";
 
 const todosName = ref("");
 const todosType = ref("select-todo");
@@ -164,6 +165,17 @@ const addTaskItem = (type) => {
 
 const createTask = async () => {
   try {
+    const validationError = validateTaskData({
+      todosName: todosName.value,
+      todosType: todosType.value,
+      todosInfo: todosInfo.value,
+    });
+
+    if (validationError) {
+      toastMsg.error(validationError);
+      return;
+    }
+
     await taskStore.createTask({
       todosName: todosName.value,
       todosType: todosType.value,
