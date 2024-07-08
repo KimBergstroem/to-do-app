@@ -43,6 +43,7 @@ Developer: [Kim Bergström](https://github.com/KimBergstroem) <br>
   - [User Stories](#user-stories)
   - [Bug Tracking for Seamless Development](#bug-tracking-for-seamless-development)
   - [Future Backlog and Progress](#future-backlog-and-progress)
+  - [Extended Period](#extended-period)
 
 - 📄[**Database**](#database)
 
@@ -216,6 +217,18 @@ The project board efficiently manages user stories, with the "Not started" colum
 
 Emphasizing that the project timeline is expedited, the iterative approach maintains adaptability, enabling ongoing refinements and improvements aligned with evolving user needs.
 
+### Extended Period
+
+During this extended development period, additional time was allocated to implement enhancements and explore automated testing, which was part of a learning process.
+
+For more detailed information on automated testing, refer to the [`Testing.md`](TESTING.md) file.
+
+Enhancements implemented during this extended period include:
+
+- Implemented form validations for task creation.
+- Enhanced validations for sign up and sign in processes.
+- Added functionality to mark tasks as complete.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <p align="center">
   <img src="docs/readme.md/readme-divider.png" />
@@ -226,7 +239,7 @@ Emphasizing that the project timeline is expedited, the iterative approach maint
 The Reminder To Do application utilizes Supabase for its backend infrastructure, particularly for user authentication and data management. Supabase offers a comprehensive solution that significantly simplifies the development process by providing ready-made authentication mechanisms and database functionalities. This choice allows the project to focus more on core functionalities and user experience enhancements rather than spending time on building and managing custom database tables and authentication systems. By leveraging Supabase, the application benefits from robust security, seamless scalability, and efficient data handling, ensuring a reliable foundation for user interaction and data management.
 
 <p align="center">
-  <img src="docs/readme.md/readme-database-sch.png" />
+  <img src="docs/readme.md/readme-database-schema.png" />
 </p>
 
 ### Reminder TO Do Application Database Schema
@@ -261,6 +274,7 @@ create table todos (
   updated_at timestamptz default timezone('utc'::text, now()) not null,
   todosName varchar,
   todosType varchar,
+  is_completed boolean,
   todosInfo json default '{}'::json,
   user_id uuid references auth.users not null
 );
