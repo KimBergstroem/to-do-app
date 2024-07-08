@@ -67,7 +67,7 @@ Developer: [Kim Bergström](https://github.com/KimBergstroem) <br>
   - [Tools](#tools)
   - [Supporting Libraries and Packages](#supporting-libraries-and-packages)
 
-- 📄[**Deployment**](#deployment)
+- 📄[**Deployment & Local Development**](#deployment-&-local-development)
 
   - [App Deployment](#app-deployment)
   - [Version Control](#version-control)
@@ -420,6 +420,15 @@ I have been mindful during coding to ensure that the website is as accessible fr
 # **Deployment & Local Development**
 
 ### App Deployment
+
+#### Email Confirmation Setup (Supabase SMTP)
+
+When users sign up using our application, email confirmation is handled through Supabase's free SMTP service. However, this service has its limitations, allowing only one user registration per hour. If you encounter "email limit exceeded" errors during testing, please use the following test account credentials:
+
+- **Email:** Testing@reminderToDo.com
+- **Password:** [ H3llo1234@ ]
+
+Please note that for a production-ready project, we plan to implement our own SMTP service to avoid these limitations and ensure reliable email confirmation for all users.
 
 For deploying your app, Netlify is used. Follow these steps:
 
