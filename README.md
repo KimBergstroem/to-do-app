@@ -423,14 +423,80 @@ I have been mindful during coding to ensure that the website is as accessible fr
 
 #### Email Confirmation Setup (Supabase SMTP)
 
-When users sign up using our application, email confirmation is handled through Supabase's free SMTP service. However, this service has its limitations, allowing only one user registration per hour. If you encounter "email limit exceeded" errors during testing, please use the following test account credentials:
+When users sign up using our application, email confirmation is handled through Supabase's free SMTP service. However, this service has its limitations, allowing only 3 requests per hour. If you encounter "email limit exceeded" errors during testing, please use the following test account credentials:
 
 - **Email:** Testing@reminderToDo.com
-- **Password:** [ H3llo1234@ ]
+- **Password:** H3llo1234@
 
-Please note that for a production-ready project, we plan to implement our own SMTP service to avoid these limitations and ensure reliable email confirmation for all users.
+Please note that for a production-ready project, implement own SMTP service to avoid these limitations and ensure reliable email confirmation for all users.
 
-For deploying your app, Netlify is used. Follow these steps:
+This is an example of how implementing an SMTP service for sending and receiving auth email services with Gmail.
+
+#### SMTP Setup with Gmail
+
+1.  **Enable Less Secure Apps Access**:
+
+    - Enable "Less secure app access" in your Google account settings. This allows your application to access Gmail via SMTP.
+    - Go to [Less secure apps & your Google Account](https://myaccount.google.com/lesssecureapps) and turn on this option.
+
+2.  **Generate App Password (Recommended)**:
+
+    - For secure access, generate an "App Password" specific to your application. This password replaces your Google account password for SMTP authentication.
+    - Go to [App passwords](https://myaccount.google.com/apppasswords) in your Google Account settings.
+    - Select "Mail" as the app and "Other (Custom name)" as the device, then click "Generate."
+
+3.  **SMTP Server Settings**:
+
+    - Use the following SMTP server settings for Gmail:
+      - **SMTP Server:** smtp.gmail.com
+      - **Port:** 587
+      - **Username:** example@gmail.com
+      - **Password:** Use the generated App Password from step 2.
+
+4.  **Implement SMTP in Your Application**:
+
+    To set up a custom SMTP server with Supabase as we use in this project:
+
+    - **Navigate to Supabase Dashboard:**
+
+      - Go to the Auth Settings Page in your Supabase project dashboard.
+
+    - **Enable Custom SMTP:**
+
+      - Under the SMTP Provider section, enable 'Custom SMTP'.
+
+    - **Configure SMTP Settings:**
+
+      - Fill in the details obtained from your SMTP provider, such as:
+        - **SMTP_HOST:** Hostname of the SMTP server (e.g., smtp.gmail.com)
+        - **SMTP_PORT:** Port number (e.g., 587 for TLS)
+        - **SMTP_USER:** Your SMTP username (typically your email address)
+        - **SMTP_PASS:** App-specific password generated from your SMTP provider
+        - **SMTP_SENDER_NAME:** Name displayed as the sender in emails
+        - **SMTP_ADMIN_EMAIL:** Optional admin email for SMTP setup notifications
+
+    - **Adjust Rate Limits:**
+
+      - Customize email rate limits under Auth > Rate Limits in the Supabase dashboard.
+      - Default rate limits ensure service stability; adjust as per your application's needs.
+
+      Here’s an example configuration for Gmail SMTP with Supabase Functions:
+
+          SMTP_ADMIN_EMAIL=your-admin-email@example.com
+          SMTP_HOST=smtp.gmail.com
+          SMTP_PORT=587
+          SMTP_USER=your-email@gmail.com
+          SMTP_PASS=your-app-password
+          SMTP_SENDER_NAME=Your App Name
+
+5.  **Testing and Production Deployment**:
+    - Test your SMTP configuration thoroughly in a development environment to ensure emails are sent and received correctly.
+    - Implement error handling and logging for SMTP operations to monitor email delivery status.
+    - For production, configure your application to use environment variables for sensitive information like Gmail credentials and App Passwords to enhance security.
+
+By following these steps, you can securely set up SMTP with Gmail for sending and receiving authentication emails in your application. Adjust the configuration as per your application's requirements and security guidelines.
+
+#### **Deploying App, Netlify is used. Follow these steps:**
 
 **Create a New Site:**
 
@@ -532,10 +598,11 @@ All testing was carried out in [Testing.md](TESTING.md).
 
 ### Solved Bugs
 
-| Type      | Bug                                         | Solution                                                                                                                                    |
-| --------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| Supabase  | Was not able to sign in with my application | Update the signIn function to signInWithPassword in my userStore. Becouse i used a newer version of supabase that do not use that function. |
-| Script.js | Example                                     | Example                                                                                                                                     |
+| Type                 | Bug                                                                                                                                                                                             | Solution                                                                                                                                    |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Supabase             | Was not able to sign in with my application                                                                                                                                                     | Update the signIn function to signInWithPassword in my userStore. Becouse i used a newer version of supabase that do not use that function. |
+| `TaskDetailView.vue` | Build failed due to inability to resolve "../components/tasks/validateTaskData.js" from `TaskDetailView.vue`                                                                                    | Renamed file from "validateTaskData.js" to "Validatetaskdata.js" (uppercase) to resolve import issue. Then changed back to lowercase.       |
+| `Footer.vue`         | Build failed due to already included file name 'c:/Users/kimme/to-do-app/src/components/footer.vue' differs from file name 'c:/Users/kimme/to-do-app/src/components/Footer.vue' only in casing. | Renamed file `footer.vue` to `Footer.vue` (uppercase) to resolve naming conflict.                                                           |
 
 &nbsp;
 
