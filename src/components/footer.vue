@@ -15,7 +15,7 @@
       >
     </p>
 
-    <p class="small">Educational purpose only</p>
+    <p class="small mb-3">Educational purpose only</p>
   </div>
 </template>
 
