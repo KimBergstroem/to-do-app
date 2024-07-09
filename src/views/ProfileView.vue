@@ -91,7 +91,7 @@ async function getProfile() {
     avatar_url.value = userStore.profile.avatar_url;
     await taskStore.fetchTasks();
   } catch (error) {
-    errorMsg = `Error fetching profile: ${error.message}`;
+    errorMsg.value = `Error fetching profile: ${error.message}`;
   } finally {
     loading.value = false;
   }
