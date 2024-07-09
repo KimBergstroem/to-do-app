@@ -67,7 +67,7 @@ Developer: [Kim Bergström](https://github.com/KimBergstroem) <br>
   - [Tools](#tools)
   - [Supporting Libraries and Packages](#supporting-libraries-and-packages)
 
-- 📄[**Deployment & Local Development**](#deployment-&-local-development)
+- 📄[**Deployment**](#deployment)
 
   - [App Deployment](#app-deployment)
   - [Version Control](#version-control)
@@ -135,7 +135,13 @@ To streamline project management, GitHub Projects is employed as a central hub. 
 
 ### Individual Task Management with Trello
 
-To manage daily tasks efficiently, Trello, a desktop application, complements GitHub Projects. For instance, when assigned a user story with multiple tasks, these tasks are imported into Trello for detailed management. Linnk to Trello can be found [here](https://www.trello.com/)
+To manage daily tasks efficiently, Trello, a desktop application, complements GitHub Projects. For instance, when assigned a user story with multiple tasks, these tasks are imported into Trello for detailed management. Link to Trello can be found [here](https://www.trello.com/)
+
+Example of my daily workflow divided from GitHub into my Trello.
+
+<p align="center">
+  <img src="docs/readme.md/readme-trello-schedule.png" />
+</p>
 
 ### User Stories as GitHub Issues
 
@@ -417,7 +423,7 @@ I have been mindful during coding to ensure that the website is as accessible fr
   <img src="docs/readme.md/readme-divider.png" />
 </p>
 
-# **Deployment & Local Development**
+# **Deployment**
 
 ### App Deployment
 
@@ -634,6 +640,7 @@ The official Vue3 documentation has been an invaluable resource throughout the p
 - [Component v-model](https://vuejs.org/guide/components/v-model.html)
 - [Routing](https://vuejs.org/guide/scaling-up/routing.html)
 - [State Management](https://vuejs.org/guide/scaling-up/state-management.html)
+- [Catch all / 404 Not found Route](https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route)
 
 ### Pinia Documentation
 
