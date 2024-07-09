@@ -169,7 +169,6 @@ footer {
 }
 
 /* Task Table Style */
-/* Custom table styles */
 .custom-table {
   border-collapse: collapse;
   width: 100%;
@@ -195,6 +194,13 @@ footer {
 
 .custom-table tr {
   border: none;
+}
+
+.completed-task {
+  text-decoration: line-through;
+  text-decoration-color: var(--custom-color-brand);
+  text-decoration-thickness: 3px;
+  opacity: 0.8;
 }
 
 /* Rounded borders */

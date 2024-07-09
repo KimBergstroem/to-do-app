@@ -60,7 +60,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in editData.todosInfo" :key="item.id">
+              <tr
+                v-for="(item, index) in editData.todosInfo"
+                :key="item.id"
+                :class="{ 'completed-task': item.is_completed }">
                 <td>{{ index + 1 }}</td>
                 <td>
                   <div v-if="edit">
@@ -110,7 +113,10 @@
                     </button>
                   </template>
                   <template v-else>
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      v-model="item.is_completed"
+                      @change="updateTask(item)" />
                   </template>
                 </td>
               </tr>
@@ -253,6 +259,7 @@ const addTaskItem = () => {
       id: generateUID(),
       todosInfo: "",
       whattodo: "",
+      is_completed: false,
     });
   } else if (editData.value.todosType === "work") {
     editData.value.todosInfo.push({
@@ -260,6 +267,7 @@ const addTaskItem = () => {
       todosInfo: "",
       project: "",
       deadline: "",
+      is_completed: false,
     });
   }
 };
