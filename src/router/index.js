@@ -9,6 +9,7 @@ import Auth from "../components/authentication/Auth.vue";
 import SignIn from "../components/authentication/SignIn.vue";
 import SignUp from "../components/authentication/SignUp.vue";
 import PasswordUpdate from "../components/authentication/PasswordUpdate.vue";
+import NotFound from "../views/NotFound.vue";
 
 const routes = [
   {
@@ -80,6 +81,13 @@ const routes = [
     component: TaskDetailView,
     meta: {
       title: "Task Details",
+    },
+  },
+  {
+    path: "/:catchAll(.*)", // Catch all undefined routes
+    component: NotFound,
+    meta: {
+      title: "404 Not Found",
     },
   },
 ];
