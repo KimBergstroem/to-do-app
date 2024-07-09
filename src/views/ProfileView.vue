@@ -53,7 +53,6 @@
         >Sign In</router-link
       >
     </div>
-    <div v-show="errorMsg" class="text-center mt-3">{{ errorMsg }}</div>
   </div>
 </template>
 
@@ -61,10 +60,12 @@
 import { ref, onMounted, computed } from "vue";
 import { useUserStore } from "../stores/userStore";
 import { useTaskStore } from "../stores/taskStore";
+import { useToast } from "vue-toastification";
 import Avatar from "../components/profiles/ProfileAvatar.vue";
 
 const userStore = useUserStore();
 const taskStore = useTaskStore();
+const toastMsg = useToast();
 const isLoggedIn = computed(() => userStore.isLoggedIn);
 const totalTasks = computed(() => taskStore.tasks.length);
 
@@ -74,10 +75,11 @@ const full_name = ref(null);
 const website = ref(null);
 const avatar_url = ref(null);
 const work_title = ref(null);
-const errorMsg = ref(null);
 
 onMounted(() => {
-  getProfile();
+  if (isLoggedIn.value) {
+    getProfile();
+  }
 });
 
 async function getProfile() {
@@ -91,7 +93,7 @@ async function getProfile() {
     avatar_url.value = userStore.profile.avatar_url;
     await taskStore.fetchTasks();
   } catch (error) {
-    errorMsg.value = `Error fetching profile: ${error.message}`;
+    toastMsg.error(`${error.message}`);
   } finally {
     loading.value = false;
   }
