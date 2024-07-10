@@ -1,7 +1,5 @@
 <script setup>
-import { onMounted, ref, computed } from "vue";
-import { supabase } from "./supabase/supabase";
-import { storeToRefs } from "pinia";
+import { onMounted, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "./stores/userStore";
 import NavbarSection from "./components/Nav.vue";
@@ -9,7 +7,6 @@ import FooterSection from "./components/footer.vue";
 
 const router = useRouter();
 const userStore = useUserStore();
-const { user } = storeToRefs(userStore);
 
 onMounted(async () => {
   try {
@@ -22,6 +19,11 @@ onMounted(async () => {
 const isTaskCreate = computed(() => {
   return router.currentRoute.value.name === "TaskCreate";
 });
+
+const isAuthRoute = computed(() => {
+  const currentPath = router.currentRoute.value.path;
+  return currentPath.startsWith("/auth");
+});
 </script>
 
 <template>
@@ -31,8 +33,13 @@ const isTaskCreate = computed(() => {
     </header>
 
     <main>
-      <div class="container" style="padding: 50px 0 100px 0">
-        <RouterView />
+      <div
+        class="container d-flex justify-content-center"
+        style="padding: 50px 0 100px 0">
+        <transition name="fade" v-if="!isAuthRoute">
+          <RouterView />
+        </transition>
+        <RouterView v-else />
       </div>
     </main>
 
@@ -47,3 +54,14 @@ const isTaskCreate = computed(() => {
     </router-link>
   </div>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
