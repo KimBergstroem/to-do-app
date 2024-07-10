@@ -614,10 +614,9 @@ All testing was carried out in [Testing.md](TESTING.md).
 
 ### Known Bugs
 
-| Type      | Bug     | Solution |
-| --------- | ------- | -------- |
-| Script.js | Example | Example  |
-| Script.js | Example | Example  |
+| Type   | Bug                                                                                                                                     | Info                                                                    |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| app.js | When implementing `<transition>` in `app.vue`, sign-up and sign-in redirects break, content isn't displayed, rerendering isn't working. | Excluded `<transition>` from the project due to ongoing issues for now. |
 
 &nbsp;
 
