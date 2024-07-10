@@ -604,19 +604,20 @@ All testing was carried out in [Testing.md](TESTING.md).
 
 ### Solved Bugs
 
-| Type                 | Bug                                                                                                                                                                                             | Solution                                                                                                                                    |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| Supabase             | Was not able to sign in with my application                                                                                                                                                     | Update the signIn function to signInWithPassword in my userStore. Becouse i used a newer version of supabase that do not use that function. |
-| `TaskDetailView.vue` | Build failed due to inability to resolve "../components/tasks/validateTaskData.js" from `TaskDetailView.vue`                                                                                    | Renamed file from "validateTaskData.js" to "Validatetaskdata.js" (uppercase) to resolve import issue. Then changed back to lowercase.       |
-| `Footer.vue`         | Build failed due to already included file name 'c:/Users/kimme/to-do-app/src/components/footer.vue' differs from file name 'c:/Users/kimme/to-do-app/src/components/Footer.vue' only in casing. | Renamed file `footer.vue` to `Footer.vue` (uppercase) to resolve naming conflict.                                                           |
+| Type                 | Bug                                                                                                                                                                                             | Solution                                                                                                                              |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `userStore.js`       | Couldn't sign in to my application using 'signInWithPassword'                                                                                                                                   | Resolved by downgrading to the correct version compatible with Supabase's API for 'signInWithPassword'.                               |
+| `vite.config.js`     | Error when deploying to Netlify: "Error: Dynamic require of 'file:///opt/build/repo/node_modules/postcss-clean/index.js' is not supported"                                                      | Updated configuration to statically import 'postcss-clean' plugin to resolve build error.                                             |
+| `TaskDetailView.vue` | Build failed due to inability to resolve "../components/tasks/validateTaskData.js" from `TaskDetailView.vue`                                                                                    | Renamed file from "validateTaskData.js" to "Validatetaskdata.js" (uppercase) to resolve import issue. Then changed back to lowercase. |
+| `Footer.vue`         | Build failed due to already included file name 'c:/Users/kimme/to-do-app/src/components/footer.vue' differs from file name 'c:/Users/kimme/to-do-app/src/components/Footer.vue' only in casing. | Renamed file `footer.vue` to `Footer.vue` (uppercase) to resolve naming conflict.                                                     |
 
 &nbsp;
 
 ### Known Bugs
 
-| Type   | Bug                                                                                                                                     | Info                                                                    |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| app.js | When implementing `<transition>` in `app.vue`, sign-up and sign-in redirects break, content isn't displayed, rerendering isn't working. | Excluded `<transition>` from the project due to ongoing issues for now. |
+| Type     | Bug                                                                                                                                     | Info                                                                                                      |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `app.js` | When implementing `<transition>` in `app.vue`, sign-up and sign-in redirects break, content isn't displayed, rerendering isn't working. | Excluded `<transition>` from the auth/ route path due to ongoing issues for now. This is a temporary fix. |
 
 &nbsp;
 
@@ -640,6 +641,7 @@ The official Vue3 documentation has been an invaluable resource throughout the p
 - [Routing](https://vuejs.org/guide/scaling-up/routing.html)
 - [State Management](https://vuejs.org/guide/scaling-up/state-management.html)
 - [Catch all / 404 Not found Route](https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route)
+- [Transition](https://router.vuejs.org/guide/advanced/transitions)
 
 ### Pinia Documentation
 
