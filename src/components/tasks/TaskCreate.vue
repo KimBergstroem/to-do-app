@@ -1,5 +1,5 @@
 <template>
-  <div class="container py-4">
+  <div class="container">
     <div v-if="isLoggedIn">
       <div class="card shadow-sm bg-darken text-white">
         <div class="card-body">
@@ -123,7 +123,7 @@
     </div>
     <div v-else class="d-flex flex-column align-items-center">
       <h1 class="text-2xl">What are you waiting for?</h1>
-      <h2>Sign in to start create magic.</h2>
+      <h2>Sign in to start creating some magic.</h2>
       <router-link class="btn text-white btn-clr-primary mt-3" to="/auth/signIn"
         >Sign In</router-link
       >
