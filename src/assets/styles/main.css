@@ -102,7 +102,39 @@ footer {
   text-align: center;
 }
 
-/* Logo text styling */
+footer p {
+  color: rgb(161, 161, 161);
+  margin: 0;
+  padding: 0;
+}
+
+footer a {
+  color: rgb(161, 161, 161);
+}
+
+footer p + footer p {
+  margin-top: 2px;
+}
+
+/* Navbar styling */
+.custom-nav-link {
+  background-color: var(--custom-color-brand);
+  color: var(--custom-color);
+  padding: 0.5rem 1rem;
+  border-radius: var(--custom-border-radius);
+  margin: 0.5rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-nav-link:hover {
+  background-color: var(--custom-color-brand-secondary);
+}
+
+.custom-nav-link.router-link-exact-active {
+  background-color: var(--custom-color-brand-secondary);
+}
+
+/* Logo text */
 .logo-text {
   font-weight: bold;
   background: linear-gradient(
@@ -118,7 +150,7 @@ footer {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: moveGradient 2s infinite linear;
+  animation: moveGradient 1.5s infinite linear;
 }
 
 /* Keyframes for the gradient animation for logo */
@@ -215,6 +247,7 @@ footer {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+
 /* Container */
 .container {
   margin-right: auto;

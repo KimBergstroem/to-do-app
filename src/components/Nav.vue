@@ -110,22 +110,3 @@ const signOut = async () => {
   }
 };
 </script>
-
-<style scoped>
-.custom-nav-link {
-  background-color: var(--custom-color-brand);
-  color: var(--custom-color);
-  padding: 0.5rem 1rem;
-  border-radius: var(--custom-border-radius);
-  margin: 0.5rem;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.custom-nav-link:hover {
-  background-color: var(--custom-color-brand-secondary);
-}
-
-.custom-nav-link.router-link-exact-active {
-  background-color: var(--custom-color-brand-secondary);
-}
-</style>

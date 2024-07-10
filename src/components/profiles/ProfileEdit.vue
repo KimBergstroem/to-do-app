@@ -77,9 +77,9 @@
 import { ref, onMounted, computed } from "vue";
 import { useUserStore } from "../../stores/userStore";
 import { useRouter } from "vue-router";
-import Avatar from "./ProfileAvatar.vue";
 import { useToast } from "vue-toastification";
 import { validateProfileData } from "./validateProfileData.js";
+import Avatar from "./ProfileAvatar.vue";
 
 const userStore = useUserStore();
 const router = useRouter();

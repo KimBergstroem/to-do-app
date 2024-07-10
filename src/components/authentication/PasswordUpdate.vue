@@ -19,7 +19,6 @@
 import { ref } from "vue";
 import { useUserStore } from "../../stores/userStore";
 import { useToast } from "vue-toastification";
-import { useRouter } from "vue-router";
 
 const newPassword = ref("");
 const confirmPassword = ref("");
