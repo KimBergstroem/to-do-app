@@ -21,6 +21,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
+    "postcss": "^8.4.39",
+    "postcss-clean": "^1.2.2",
     "vite": "^5.3.1"
   }
 }
