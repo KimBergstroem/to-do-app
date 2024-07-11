@@ -314,6 +314,19 @@ p {
   width: 100%;
 }
 
+.form-control:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+#email:focus,
+#password:focus,
+#confirmPassword:focus {
+  border: none; 
+  border-left: 5px solid var(--custom-color-brand) !important; 
+}
+
 /* Create Task Button at bottom */
 .create-task-button {
   position: fixed;
