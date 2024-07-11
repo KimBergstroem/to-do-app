@@ -35,5 +35,5 @@ coverage
 .env.development
 .env.production
 
-# Gitpod yml
+# Gitpod yml file
 .gitpod.yml
