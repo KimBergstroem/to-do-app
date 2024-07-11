@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-transparent m-4">
+  <nav class="navbar navbar-expand-md navbar-dark bg-transparent m-4">
     <router-link class="navbar-brand" to="/"
       ><span class="logo-text">Reminder To Do</span></router-link
     >
@@ -109,4 +109,5 @@ const signOut = async () => {
     toastMsg.error(error.message);
   }
 };
+
 </script>
