@@ -8,7 +8,8 @@
       type="button"
       @click="isCollapsed = !isCollapsed"
       :aria-expanded="!isCollapsed"
-      aria-controls="navbarNav">
+      aria-controls="navbarNav"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div
