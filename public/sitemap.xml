@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Home -->
+  <url>
+    <loc>https://reminder-to-do-app.netlify.app/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Profile -->
+  <url>
+    <loc>https://reminder-to-do-app.netlify.app//profile</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://reminder-to-do-app.netlify.app//profile/edit</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Tasks -->
+  <url>
+    <loc>https://reminder-to-do-app.netlify.app//tasks</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Create Task -->
+  <url>
+    <loc>https://reminder-to-do-app.netlify.app/create</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Error Page (404) -->
+  <url>
+    <loc>https://reminder-to-do-app.netlify.app//404</loc>
+    <changefreq>never</changefreq>
+    <priority>0.1</priority>
+  </url>
+</urlset>

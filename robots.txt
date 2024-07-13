@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /auth/
+Disallow: /profile/edit
+Disallow: /create
+
+Sitemap: https://reminder-to-do-app.netlify.app/sitemap.xml
