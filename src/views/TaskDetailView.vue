@@ -113,6 +113,7 @@
                     </button>
                   </template>
                   <template v-else>
+                    <label for="checkbox" class="visually-hidden">Checkbox</label>
                     <input
                       type="checkbox"
                       v-model="item.is_completed"

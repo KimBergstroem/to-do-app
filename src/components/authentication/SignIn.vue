@@ -9,6 +9,7 @@
                 <h1>Login</h1>
                 <p class="text-muted">Sign In to your account</p>
                 <div class="input-group mb-3 form">
+                  <label for="email" class="visually-hidden">Email</label>
                   <input
                     type="email"
                     class="input-field form-control rounded-end"
@@ -18,6 +19,7 @@
                     required />
                 </div>
                 <div class="input-group mb-4">
+                  <label for="password" class="visually-hidden">Password</label>
                   <input
                     :type="passwordVisible ? 'text' : 'password'"
                     class="input-field form-control rounded-end"

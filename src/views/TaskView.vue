@@ -6,6 +6,7 @@
         <div class="search-icon">
           <font-awesome-icon icon="fas fa-search" />
         </div>
+        <label for="input-search" class="visually-hidden">Search</label>
         <input
           v-model.trim="search"
           class="input-search"

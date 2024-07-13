@@ -10,9 +10,6 @@
         </div>
         <form @submit.prevent="updateProfile" class="profile-form">
           <div class="ml-md-3 mt-3 mt-md-0 flex-grow-1">
-            <h4 class="mb-0 mt-0">{{ username }}</h4>
-            <span>{{ work_title }}</span>
-
             <div class="form-group">
               <label for="username">Username</label>
               <input
