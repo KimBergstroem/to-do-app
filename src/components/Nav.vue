@@ -58,23 +58,23 @@
       </ul>
       <div>
         <ul class="navbar-nav mx-auto text-center mb-2 mb-lg-0">
-          <li v-if="isLoggedIn">
-            <p class="nav-link">Welcome, {{ username }}</p>
-          </li>
-          <li v-if="isLoggedIn">
-            <button @click="signOut" class="nav-link mx-auto text-center">
-              SIGN OUT
-            </button>
-          </li>
-          <li v-else>
-            <router-link
-              to="/auth/signIn"
-              class="nav-link btn"
-              @click="isCollapsed = true">
-              Sign In / Sign Up
-            </router-link>
-          </li>
-        </ul>
+  <li v-if="isLoggedIn" class="nav-item d-flex align-items-center justify-content-center">
+    <p class="nav-link mb-0">Welcome, {{ username }}</p>
+  </li>
+  <li v-if="isLoggedIn" class="nav-item d-flex align-items-center justify-content-center">
+    <button @click="signOut" class="nav-link btn btn-link text-center">
+      SIGN OUT
+    </button>
+  </li>
+  <li v-else class="nav-item d-flex align-items-center justify-content-center">
+    <router-link
+      to="/auth/signIn"
+      class="nav-link btn text-center"
+      @click="isCollapsed = true">
+      Sign In / Sign Up
+    </router-link>
+  </li>
+</ul>
       </div>
     </div>
   </nav>
