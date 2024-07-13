@@ -112,7 +112,7 @@ By using the WAVE tool, I gained valuable insights into the accessibility of my 
 
 ## Performance
 
-I conducted a comprehensive evaluation of [The Reminder To Do website](https://next.com/) using [Google Lighthouse in Google Chrome Developer Tools](https://developer.chrome.com/docs/lighthouse/). This evaluation was performed in Google Chrome browser's incognito mode to eliminate all potential impacts from other addons and cached files.
+I conducted a comprehensive evaluation of [The Reminder To Do website](https://main--reminder-to-do-app.netlify.app/) using [Google Lighthouse in Google Chrome Developer Tools](https://developer.chrome.com/docs/lighthouse/). This evaluation was performed in Google Chrome browser's incognito mode to eliminate all potential impacts from other addons and cached files.
 
 The performance scores were assessed for both desktop and mobile devices. Below are the summarized results:
 
