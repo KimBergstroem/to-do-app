@@ -12,7 +12,6 @@ Developer: [Kim Bergström](https://github.com/KimBergstroem) <br>
   - [HTML Validation](#html-validation)
   - [CSS Validation](#css-validation)
   - [JAVASCRIPT Validation](#javascript-validation)
-  - [PYTHON Validaton](#python-validation)
 - 📄[**Accessibility**](#accessibility)
   - [Wave](#--wave--)
 - 📄[**Performance**](#performance)
@@ -23,7 +22,6 @@ Developer: [Kim Bergström](https://github.com/KimBergstroem) <br>
 - 📄[**Manual Testing**](#manual-testing)
   - [Testing user stories](#testing-user-stories)
   - [User Experience and Improvements](#user-experience-and-improvements)
-  - [Full Testing](#full-testing)
 - 📄[**Summary**](#summary)
 
 <p align="center">
@@ -38,20 +36,22 @@ W3C Markup Validation is a service offered by W3C, which enables you to assess t
 
 Google Chrome web browser and the 'Inspect' function were used to capture the HTML page from the webb applications templates, which was then validated against the W3C Validator.
 
+Two error codes were ignored during the validation process as they are inherent to the Vue framework and do not affect the functionality of the application:
+
+- `Start tag seen without seeing a doctype first. Expected <!DOCTYPE html>`
+- `The type attribute for the style element is not needed and should be omitted. (10)`
+
 | **Tested**             | **Result**                 | **View Result**                                                                                 | **Pass** |
 | ---------------------- | -------------------------- | ----------------------------------------------------------------------------------------------- | :------: |
 | **Components / Views** |
-| HomeView.vue           | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| ProfileView.vue        | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| ProfileEdit.vue        | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| TaskView.vue           | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| TaskCreate.vue         | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| TaskDetailView.vue     | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| Footer.vue             | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| Nav.vue                | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| SignIn.vue             | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| SignUp.vue             | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| NotFound.vue           | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
+| HomeView           | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/wc3Html/test-wc3-html-validation-home.JPG)</details> |    ✅    |
+| ProfileView        | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/wc3Html/test-wc3-html-validation-profile.JPG)</details> |    ✅    |
+| ProfileEdit       | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/wc3Html/test-wc3-html-validation-profileEdit.JPG)</details> |    ✅    |
+| TaskView           | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/wc3Html/test-wc3-html-validation-taskview.JPG)</details> |    ✅    |
+| TaskCreate        | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/wc3Html/test-wc3-html-validation-create.JPG)</details> |    ✅    |
+| TaskDetailView     | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/wc3Html/test-wc3-html-validation-taskdetailView.JPG)</details> |    ✅    |
+| SignIn.vue             | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/wc3Html/test-wc3-html-validation-signIn.JPG)</details> |    ✅    |
+| SignUp.vue             | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/wc3Html/test-wc3-html-validation-signUp.JPG)</details> |    ✅    |
 
 ### CSS Validation
 
@@ -59,39 +59,26 @@ Google Chrome web browser and the 'Inspect' function were used to capture the HT
 
 | **Tested** | **Result**            | **View Result**                                                                                 | **Pass** |
 | ---------- | --------------------- | ----------------------------------------------------------------------------------------------- | :------: |
-| main.css   | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
+| main.css   | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/test-stylesheet-main.JPG)</details> |    ✅    |
 
 ### JAVASCRIPT Validation
 
 [JSHint](https://jshint.com/) is a robust JavaScript code analysis tool that aids in improving the quality and reliability of your JavaScript code. It serves as a linter, helping you catch potential errors, enforce coding conventions, and enhance the overall maintainability of your code.
 Taking full JS files from the project folder, but also JavaScript snippets in different Components.vue files where there is JavaScript code for validation of the JS code. Below, you can find the file path along with errors and passes.
 
-Below you can see the errors that was showing on all the script that was embedded in components.vue and vue structure. Besides from this errors, all javascript was passing without any errors.
+Below you can see the errors that was showing on one script of userStore.js that was embedded with import from the .env file for secret key. Besides from this error, all javascript was passing without any errors. I was passing /* jshint esversion: 11 */ as comment on all js files before validating them.
 
--       `Error message`
-- `Error explaination`
+- `import.meta may only be used in module code.`
 
 | **Tested**              | **Result**            | **View Result**                                                                                 | **Pass** |
 | ----------------------- | --------------------- | ----------------------------------------------------------------------------------------------- | :------: |
-| index.js                | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| main.js                 | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| taskStore.js            | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| userStore.js            | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| supabase.js             | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| validateAuthData.js     | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| validateProfileData.js  | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| validateTaskItemData.js | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-
-### Vue3 Validation
-
-[Vue 3](https://next.com/) MAYBE, LET SEE IF THERE IS A SPECIAL VUE 3 VALDIATOR.
-
-| **Tested**          | **Result**                 | **View Result**                                                                                 | **Pass** |
-| ------------------- | -------------------------- | ----------------------------------------------------------------------------------------------- | :------: |
-| **.VUE Components** |
-| App.vue             | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| Home.vue            | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| Footer.vue          | All clear, no errors found | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
+| Router - index.js                | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/jshint/test-jshint-routerIndex.JPG)</details> |    ✅    |
+| main.js                 | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/jshint/test-jshint-main.JPG)</details> |    ✅    |
+| taskStore.js            | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/jshint/test-jshint-taskStore.JPG)</details> |    ✅    |
+| userStore.js            | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/jshint/test-jshint-userStore.JPG)</details> |    ✅    |
+| validateAuthData.js     | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/jshint/test-jshint-validateAuthData.JPG)</details> |    ✅    |
+| validateProfileData.js  | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/jshint/test-jshint-validateProfileData.JPG)</details> |    ✅    |
+| validateTaskData.js | No errors or warnings | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/jshint/test-jshint-validateTaskData.JPG)</details> |    ✅    |
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
 <p align="center">
@@ -106,12 +93,13 @@ Below you can see the errors that was showing on all the script that was embedde
 
 During the evaluation, the following issues were identified:
 
-- **Errors**:
+- **Errors**: Six errors were found related to missing labels for inputs. These were immediately addressed, and there are now no errors in the application. All input elements have corresponding labels, ensuring better accessibility for users.
 
-- **Contrast Warning**:
+- **Contrast Warning**: Five warnings were noted due to insufficient contrast between white text and the green background on buttons. Although this color scheme does not meet the recommended contrast ratio standards, we have opted to retain it for aesthetic reasons. However, improving the background color contrast remains a potential future enhancement to further boost the application's accessibility and usability.
+
 
 <p align="center">
-  <img src="docs/testing.md/test-accessibility.png">
+  <img src="docs/testing.md/test-wave-home.JPG">
 </p>
 
 By using the WAVE tool, I gained valuable insights into the accessibility of my website. While I have chosen not to address certain errors at this time, I remain committed to creating an inclusive user experience and will continue to explore ways to improve accessibility in the future.
@@ -130,29 +118,33 @@ The performance scores were assessed for both desktop and mobile devices. Below 
 
 ### Desktop Performance
 
-- Average performance score: 0 / 100
-- The majority of pages received scores above 0 / 100, indicating excellent performance.
+- Average performance score: 100 / 100
+- The majority of pages received score 100 / 100, indicating excellent performance.
 
 | **Tested**             | **Performance Score** | **View Result**                                                                                 | **Pass** |
 | ---------------------- | --------------------- | ----------------------------------------------------------------------------------------------- | :------: |
 | **Components / Views** |
-| HomeView               | 97 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| ProfileView            | 99 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| SignUpView             | 99 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| SignInView             | 99 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
+| HomeView               | 100 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/lighthouse/test-lighthouse-dekstop-home.JPG)</details> |    ✅    |
+| TaskView            | 100 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/lighthouse/test-lighthouse-dekstop-taskview.JPG)</details> |    ✅    |
+| CreateTaskView            | 100 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/lighthouse/test-lighthouse-desktop-create.JPG)</details> |    ✅    |
+| ProfileView            | 100 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/lighthouse/test-lighthouse-dekstop-profile.JPG)</details> |    ✅    |
+| SignUpView             | 100 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/lighthouse/test-lighthouse-dekstop-signUp.JPG)</details> |    ✅    |
+| SignInView             | 100 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/lighthouse/test-lighthouse-dekstop-signIn.JPG)</details> |    ✅    |
 
 ### Mobile Performance
 
-- Average performance score: 0 / 100
+- Average performance score: 97.6 / 100
 - The pages showed slightly lower performance compared to the desktop but still maintained a satisfactory score.
 
-| **Tested**             | **Performance** | **View Result**                                                                                 | **Pass** |
-| ---------------------- | --------------- | ----------------------------------------------------------------------------------------------- | :------: |
+| **Tested**             | **Performance Score** | **View Result**                                                                                 | **Pass** |
+| ---------------------- | --------------------- | ----------------------------------------------------------------------------------------------- | :------: |
 | **Components / Views** |
-| HomeView               | 97 / 100        | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| ProfileView            | 99 / 100        | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| SignUpView             | 99 / 100        | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
-| SignInView             | 99 / 100        | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/coming.png)</details> |    ✅    |
+| HomeView               | 98 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/lighthouse/test-lighthouse-mobile-home.JPG)</details> |    ✅    |
+| TaskView            | 98 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/lighthouse/test-lighthouse-mobile-taskview.JPG)</details> |    ✅    |
+| CreateTaskView            | 98 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/lighthouse/test-lighthouse-mobile-create.JPG)</details> |    ✅    |
+| ProfileView            | 94 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/lighthouse/test-lighthouse-mobile-profile.JPG)</details> |    ✅    |
+| SignUpView             | 99 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/lighthouse/test-lighthouse-mobile-signUp.JPG)</details> |    ✅    |
+| SignInView             | 99 / 100              | <details><summary>Screenshot of result</summary>![Result](docs/testing.md/lighthouse/test-lighthouse-mobile-signIn.JPG)</details> |    ✅    |
 
 In terms of performance, Reminder To Do website delivered strong results, ensuring a seamless user experience on both desktop and mobile platforms.
 
@@ -245,10 +237,6 @@ Total users attended the testing: 3
 
 &nbsp;
 
-### Full Testing
-
-COMING SOON
-
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
 <p align="center">
   <img src="docs/readme.md/readme-divider.png" />
@@ -260,11 +248,11 @@ COMING SOON
 
 - **Desktop Performance:**
 
-  - Average performance score: 0 / 100
-  - Majority of pages received scores above 0 / 100, indicating excellent performance.
+  - Average performance score: 100 / 100
+  - Majority of pages received score 100 / 100, indicating excellent performance.
 
 - **Mobile Performance:**
-  - Average performance score: 0 / 100
+  - Average performance score: 97.6 / 100
   - Pages showed slightly lower performance compared to desktop but maintained a satisfactory score.
 
 ### Device Testing
