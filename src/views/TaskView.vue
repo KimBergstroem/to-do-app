@@ -9,6 +9,7 @@
         <label for="input-search" class="visually-hidden">Search</label>
         <input
           v-model.trim="search"
+          id="input-search"
           class="input-search"
           type="text"
           placeholder="Search..." />
