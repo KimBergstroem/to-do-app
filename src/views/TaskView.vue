@@ -37,16 +37,16 @@
               class="card shadow-sm text-decoration-none text-dark"
               :style="{ backgroundColor: todo.backgroundColor }">
               <!-- Logo based on Task type -->
-              <h1 class="card-img-top text-center py-3">
+              <div class="card-img-top text-center py-3">
                 <font-awesome-icon
                   v-if="todo.todosType === 'personal'"
                   icon="user"
-                  class="fa-solid fa-user fa-2x" />
+                  class="fa-solid fa-user fa-5x" />
                 <font-awesome-icon
                   v-if="todo.todosType === 'work'"
                   icon="laptop-file"
-                  class="fa-2x" />
-              </h1>
+                  class="fa-5x" />
+              </div>
               <div class="card-body d-flex flex-column align-items-center">
                 <p
                   class="badge bg-white text-black px-3 py-2 rounded-pill mb-3">

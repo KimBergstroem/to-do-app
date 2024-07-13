@@ -21,18 +21,19 @@
 
             <!-- Task Type -->
             <div class="mb-3">
-              <label for="todo-type" class="form-label">Type / Category</label>
-              <select
-                id="todo-type"
-                class="form-select"
-                required
-                v-model="todosType"
-                @change="todoTypeChange">
-                <option value="select-todo">Select Type</option>
-                <option value="personal">Personal</option>
-                <option value="work">Work</option>
-              </select>
-            </div>
+  <label for="todo-type" class="form-label">Type / Category</label>
+  <select
+    id="todo-type"
+    class="form-select"
+    required
+    v-model="todosType"
+    @change="todoTypeChange">
+    <option value="" disabled selected hidden>Select Type</option>
+    <option value="select-todo" hidden>Select Type</option>
+    <option value="personal">Personal</option>
+    <option value="work">Work</option>
+  </select>
+</div>
 
             <!-- Personal Task Inputs -->
             <div v-if="todosType === 'personal'">

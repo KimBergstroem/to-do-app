@@ -490,13 +490,13 @@ p {
 
 .card-title {
   font-size: 1.25rem;
-  color: var(-custom-color-secondary);
+  color: var(--custom-color-secondary);
   margin-bottom: 10px;
 }
 
 .card-text {
   font-size: 1rem;
-  color: var(-custom-color-secondary);
+  color: var(--custom-color-secondary);
   margin-bottom: 20px;
 }
 

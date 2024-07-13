@@ -19,7 +19,6 @@
           <router-link
             class="nav-link custom-nav-link"
             to="/"
-            exact
             active-class="router-link-exact-active"
             @click="isCollapsed = true"
             >Home</router-link
@@ -29,7 +28,6 @@
           <router-link
             class="nav-link custom-nav-link"
             to="/tasks"
-            exact
             active-class="router-link-exact-active"
             @click="isCollapsed = true"
             >Tasks</router-link
@@ -39,7 +37,6 @@
           <router-link
             class="nav-link custom-nav-link"
             to="/create"
-            exact
             active-class="router-link-exact-active"
             @click="isCollapsed = true"
             >Create</router-link
@@ -49,7 +46,6 @@
           <router-link
             class="nav-link custom-nav-link"
             to="/profile"
-            exact
             active-class="router-link-exact-active"
             @click="isCollapsed = true"
             >Profile</router-link
