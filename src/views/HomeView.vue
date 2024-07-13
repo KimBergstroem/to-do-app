@@ -55,7 +55,7 @@
     </div>
     <section v-else class="animatedText">
       <div class="animatedText-container">
-        <p class="animatedText-heading logo-text">Welcome to&hellip;</p>
+        <h1 class="animatedText-heading logo-text">Welcome to&hellip;</h1>
 
         <h2 class="animatedText-keyword">focused</h2>
         <h2 class="animatedText-keyword">organized</h2>
